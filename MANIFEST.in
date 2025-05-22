@@ -1,0 +1,6 @@
+include hockey_stats/*.py
+include hockey_stats/.streamlit/*.toml
+include requirements.txt
+include runtime.txt
+include pyproject.toml
+include setup.py

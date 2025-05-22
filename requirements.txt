@@ -1,5 +1,6 @@
 streamlit==1.33.0
 gspread==6.0.2
-pandas==2.2.2
-numpy==1.26.0
+pandas==2.1.4  # Pre-built wheel available
+numpy==1.24.4   # Compatible with pandas 2.1.x
 google-auth==2.27.0
+setuptools==69.1.0

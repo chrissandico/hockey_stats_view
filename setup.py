@@ -7,8 +7,8 @@ setup(
     install_requires=[
         "streamlit>=1.33.0",
         "gspread>=6.0.2",
-        "pandas>=2.0.3",
-        "numpy>=1.26.4",
+        "pandas>=2.1.0",
+        "numpy>=1.26.0",
         "google-auth>=2.27.0",
     ],
     python_requires=">=3.9",

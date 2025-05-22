@@ -1,0 +1,14 @@
+.streamlit/secrets.toml
+**/secrets.toml
+# Security
+.streamlit/secrets.toml
+**/*.json
+**/venv/
+**/.env
+
+# Python
+__pycache__/
+*.py[cod]
+
+# System
+.DS_Store

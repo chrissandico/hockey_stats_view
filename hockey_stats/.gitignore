@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*.env
+venv/
+.venv/
+env/
+
+# Secrets
+**/secrets.toml
+.streamlit/secrets.toml
+**/*.json
+
+# IDE
+.vscode/
+.idea/
+
+# System
+.DS_Store

@@ -4,7 +4,6 @@ sys.path.append(str(Path(__file__).parent))
 import streamlit as st
 import pandas as pd
 import gspread
-from oauth2client.service_account import ServiceAccountCredentials
 from pathlib import Path
 from hockey_stats.sheets_service import get_games_data, get_events_data, get_players_data
 
@@ -50,4 +49,3 @@ else:
         from hockey_stats.sheets_service import calculate_season_stats
         season_stats = calculate_season_stats(events_df, players_df)
         st.dataframe(season_stats)
-

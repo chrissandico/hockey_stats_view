@@ -45,29 +45,57 @@ else:
     if 'nav_selection' not in st.session_state:
         st.session_state.nav_selection = "Team Stats & Leaderboards"
     
+    # Add custom CSS for mobile navigation buttons
+    st.markdown("""
+    <style>
+    @media (max-width: 768px) {
+        /* Target mobile navigation buttons specifically */
+        div[data-testid="column"]:has(button[key^="mob_"]) button {
+            height: 80px !important;
+            font-size: 1.2rem !important;
+            font-weight: bold !important;
+            padding: 1rem 0.5rem !important;
+            white-space: pre-line !important;
+            line-height: 1.4 !important;
+        }
+        
+        /* Hide on desktop */
+        .mobile-only-nav {
+            display: block !important;
+        }
+    }
+    
+    @media (min-width: 769px) {
+        .mobile-only-nav {
+            display: none !important;
+        }
+    }
+    </style>
+    """, unsafe_allow_html=True)
+    
     # Mobile navigation at the top - using container for better control
     mobile_nav = st.container()
     with mobile_nav:
         # Add CSS class for mobile-only display
-        st.markdown('<div class="mobile-only">', unsafe_allow_html=True)
+        st.markdown('<div class="mobile-only-nav">', unsafe_allow_html=True)
         
         # Create larger buttons with better spacing
         col1, col2, col3 = st.columns(3, gap="small")
         
         with col1:
-            if st.button("📊\nPlayer Stats", key="mob_player", use_container_width=True, 
+            if st.button("📊\nPlayer\nStats", key="mob_player", use_container_width=True, 
                          type="primary" if st.session_state.nav_selection == "My Player's Stats" else "secondary"):
                 st.session_state.nav_selection = "My Player's Stats"
                 st.rerun()
         
         with col2:
-            if st.button("🏆\nTeam Stats", key="mob_team", use_container_width=True,
+            if st.button("🏆\nTeam\nStats", key="mob_team", use_container_width=True,
                          type="primary" if st.session_state.nav_selection == "Team Stats & Leaderboards" else "secondary"):
                 st.session_state.nav_selection = "Team Stats & Leaderboards"
                 st.rerun()
         
         with col3:
-            if st.button("🏒\nGame Stats", key="mob_games", use_container_width=True,
+            if st.button("🏒\nGame\nStats", key="mob_games", use_container_width=True,
                          type="primary" if st.session_state.nav_selection == "Game Stats" else "secondary"):
                 st.session_state.nav_selection = "Game Stats"
                 st.rerun()

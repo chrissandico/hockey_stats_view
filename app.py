@@ -45,29 +45,35 @@ else:
     if 'nav_selection' not in st.session_state:
         st.session_state.nav_selection = "Team Stats & Leaderboards"
     
-    # Mobile navigation at the top (visible on small screens via CSS)
-    st.markdown('<div class="mobile-nav-top">', unsafe_allow_html=True)
-    col1, col2, col3 = st.columns(3)
-    
-    with col1:
-        if st.button("📊 Player", key="mobile_player", use_container_width=True, 
-                     type="primary" if st.session_state.nav_selection == "My Player's Stats" else "secondary"):
-            st.session_state.nav_selection = "My Player's Stats"
-            st.rerun()
-    
-    with col2:
-        if st.button("🏆 Team", key="mobile_team", use_container_width=True,
-                     type="primary" if st.session_state.nav_selection == "Team Stats & Leaderboards" else "secondary"):
-            st.session_state.nav_selection = "Team Stats & Leaderboards"
-            st.rerun()
-    
-    with col3:
-        if st.button("🏒 Games", key="mobile_games", use_container_width=True,
-                     type="primary" if st.session_state.nav_selection == "Game Stats" else "secondary"):
-            st.session_state.nav_selection = "Game Stats"
-            st.rerun()
-    
-    st.markdown('</div>', unsafe_allow_html=True)
+    # Mobile navigation at the top - using container for better control
+    mobile_nav = st.container()
+    with mobile_nav:
+        # Add CSS class for mobile-only display
+        st.markdown('<div class="mobile-only">', unsafe_allow_html=True)
+        
+        # Create larger buttons with better spacing
+        col1, col2, col3 = st.columns(3, gap="small")
+        
+        with col1:
+            if st.button("📊\nPlayer Stats", key="mob_player", use_container_width=True, 
+                         type="primary" if st.session_state.nav_selection == "My Player's Stats" else "secondary"):
+                st.session_state.nav_selection = "My Player's Stats"
+                st.rerun()
+        
+        with col2:
+            if st.button("🏆\nTeam Stats", key="mob_team", use_container_width=True,
+                         type="primary" if st.session_state.nav_selection == "Team Stats & Leaderboards" else "secondary"):
+                st.session_state.nav_selection = "Team Stats & Leaderboards"
+                st.rerun()
+        
+        with col3:
+            if st.button("🏒\nGame Stats", key="mob_games", use_container_width=True,
+                         type="primary" if st.session_state.nav_selection == "Game Stats" else "secondary"):
+                st.session_state.nav_selection = "Game Stats"
+                st.rerun()
+        
+        st.markdown('</div>', unsafe_allow_html=True)
+        st.markdown("---")  # Add separator after mobile nav
     
     # Sidebar navigation (for desktop)
     st.sidebar.markdown('<h2 style="color: white; font-weight: bold;">Navigation</h2>', unsafe_allow_html=True)

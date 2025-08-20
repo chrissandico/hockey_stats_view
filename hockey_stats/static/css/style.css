@@ -322,39 +322,55 @@ p, li, span, div {
     border: 1px solid var(--medium-gray);
 }
 
-/* Mobile Navigation Top */
-.mobile-nav-top {
+/* Mobile Only Content */
+.mobile-only {
     display: none;
-    margin-bottom: 1rem;
 }
 
 /* Mobile Navigation Button Styling */
-.mobile-nav-top .stButton > button {
+.mobile-only .stButton > button {
     background-color: var(--primary-blue) !important;
     color: var(--white) !important;
     border: none !important;
-    border-radius: 5px !important;
-    padding: 0.75rem 0.5rem !important;
+    border-radius: 8px !important;
+    padding: 1rem 0.5rem !important;
     font-weight: bold !important;
-    font-size: 0.9rem !important;
-    min-height: 50px !important;
+    font-size: 1.1rem !important;
+    min-height: 70px !important;
+    white-space: pre-line !important;
+    line-height: 1.3 !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
 }
 
-.mobile-nav-top .stButton > button[kind="secondary"] {
-    background-color: var(--accent-silver) !important;
+.mobile-only .stButton > button[kind="secondary"] {
+    background-color: var(--white) !important;
     color: var(--primary-blue) !important;
+    border: 2px solid var(--primary-blue) !important;
 }
 
-.mobile-nav-top .stButton > button:hover {
+.mobile-only .stButton > button:hover,
+.mobile-only .stButton > button:active {
     background-color: var(--secondary-blue) !important;
     color: var(--white) !important;
+    transform: scale(0.98) !important;
+}
+
+/* Ensure proper button text display */
+.mobile-only .stButton > button > div {
+    white-space: pre-line !important;
 }
 
 /* Mobile Responsive Styles */
 @media (max-width: 768px) {
-    /* Show mobile navigation at top */
-    .mobile-nav-top {
+    /* Show mobile-only content */
+    .mobile-only {
         display: block !important;
+    }
+    
+    /* Hide the horizontal line on desktop */
+    .mobile-only + hr {
+        margin-top: 0.5rem !important;
+        margin-bottom: 0.5rem !important;
     }
     
     /* Keep sidebar available but collapsed by default */
@@ -412,8 +428,13 @@ p, li, span, div {
 
 /* Desktop styles */
 @media (min-width: 769px) {
-    /* Hide mobile navigation on desktop */
-    .mobile-nav-top {
+    /* Hide mobile-only content on desktop */
+    .mobile-only {
+        display: none !important;
+    }
+    
+    /* Hide the separator after mobile nav on desktop */
+    .mobile-only + hr {
         display: none !important;
     }
     

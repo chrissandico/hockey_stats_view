@@ -139,24 +139,24 @@ def game_stats_view(players_df, games_df, events_df, game_roster_df):
             if event.get('AssistPlayer1ID') == player_id or event.get('AssistPlayer2ID') == player_id:
                 assists += 1
         
-            # Calculate plus/minus
-            plus_minus = 0
-            if 'YourTeamPlayersOnIce' in game_events.columns:
-                for _, event in game_events[game_events['IsGoal'] == True].iterrows():
-                    if pd.notna(event.get('YourTeamPlayersOnIce')):
-                        # More robust parsing of YourTeamPlayersOnIce field
-                        raw_players = str(event.get('YourTeamPlayersOnIce', ''))
-                        players_on_ice_raw = raw_players.split(',')
-                        players_on_ice = []
-                        for p in players_on_ice_raw:
-                            p_clean = p.strip().replace('player_', '')
-                            players_on_ice.append(p_clean)
-                        
-                        if player_id in players_on_ice:
-                            if event.get('Team') == 'your_team':  # Adjust based on your team ID
-                                plus_minus += 1
-                            else:
-                                plus_minus -= 1
+        # Calculate plus/minus
+        plus_minus = 0
+        if 'YourTeamPlayersOnIce' in game_events.columns:
+            for _, event in game_events[game_events['IsGoal'] == True].iterrows():
+                if pd.notna(event.get('YourTeamPlayersOnIce')):
+                    # More robust parsing of YourTeamPlayersOnIce field
+                    raw_players = str(event.get('YourTeamPlayersOnIce', ''))
+                    players_on_ice_raw = raw_players.split(',')
+                    players_on_ice = []
+                    for p in players_on_ice_raw:
+                        p_clean = p.strip().replace('player_', '')
+                        players_on_ice.append(p_clean)
+                    
+                    if player_id in players_on_ice:
+                        if event.get('Team') == 'your_team':  # Adjust based on your team ID
+                            plus_minus += 1
+                        else:
+                            plus_minus -= 1
         
         # Calculate shots
         shots = len(player_game_events[player_game_events['EventType'] == 'Shot']) if 'EventType' in player_game_events.columns else 0

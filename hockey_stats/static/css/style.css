@@ -1,0 +1,387 @@
+/* Hockey Stats Web App - Custom CSS */
+
+/* Main Colors */
+:root {
+    --primary-blue: #00205B;  /* Toronto Maple Leafs blue */
+    --secondary-blue: #00A0E3; /* Lighter blue for accents */
+    --accent-silver: #C4CED4; /* Silver accent color */
+    --white: #FFFFFF;
+    --light-gray: #F5F5F5;
+    --medium-gray: #E0E0E0;
+    --dark-gray: #333333;
+    --success-green: #28a745;
+    --warning-yellow: #ffc107;
+}
+
+/* Base Styles */
+.stApp {
+    background-color: var(--light-gray);
+    color: var(--dark-gray);
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Improve text visibility */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary-blue);
+    font-weight: bold;
+}
+
+p, li, span, div {
+    color: var(--dark-gray);
+}
+
+.stMarkdown {
+    color: var(--dark-gray);
+}
+
+/* Header Styling */
+.stApp header {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+}
+
+/* Sidebar Styling */
+.css-1d391kg, .css-12oz5g7 {
+    background-color: var(--primary-blue);
+    color: var(--white);
+}
+
+.sidebar .sidebar-content {
+    background-color: var(--primary-blue);
+}
+
+/* Improve sidebar text visibility */
+.st-emotion-cache-16idsys p, 
+.st-emotion-cache-16idsys span,
+.st-emotion-cache-16idsys div,
+.st-emotion-cache-16idsys h1,
+.st-emotion-cache-16idsys h2,
+.st-emotion-cache-16idsys h3 {
+    color: var(--white) !important;
+    font-weight: bold !important;
+}
+
+/* Sidebar navigation title */
+.st-emotion-cache-pkbazv {
+    color: var(--white) !important;
+    font-weight: bold !important;
+    font-size: 1.2rem !important;
+}
+
+/* Navigation Links */
+.nav-link {
+    background-color: var(--white);
+    color: var(--primary-blue);
+    padding: 0.75rem 1rem;
+    margin: 0.5rem 0;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: var(--secondary-blue);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nav-link.active {
+    background-color: var(--secondary-blue);
+    color: var(--white);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Sidebar buttons styling */
+.stButton > button {
+    background-color: var(--accent-silver) !important;
+    color: var(--primary-blue) !important;
+    border: none !important;
+    border-radius: 5px !important;
+    padding: 0.5rem 1rem !important;
+    font-weight: bold !important;
+    width: 100% !important;
+    margin-bottom: 0.5rem !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+}
+
+.stButton > button:hover {
+    background-color: var(--white) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Active button styling */
+.stButton > button[kind="secondary"] {
+    background-color: var(--secondary-blue) !important;
+    color: var(--white) !important;
+}
+
+/* Cards */
+.stat-card {
+    background-color: var(--white);
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+    border-top: 5px solid var(--primary-blue);
+}
+
+.player-card {
+    background-color: var(--white);
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+    border-left: 5px solid var(--primary-blue);
+    transition: transform 0.3s ease;
+}
+
+.player-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Tables */
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.styled-table thead tr {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid var(--medium-gray);
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: var(--light-gray);
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid var(--primary-blue);
+}
+
+/* Metrics */
+.metric-container {
+    background-color: var(--white);
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 1rem;
+    border: 1px solid var(--medium-gray);
+}
+
+.metric-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-blue);
+}
+
+.metric-label {
+    font-size: 0.9rem;
+    color: var(--dark-gray);
+    font-weight: bold;
+    margin-top: 0.25rem;
+}
+
+/* Improve text visibility in metrics */
+.st-emotion-cache-1wivap2 {
+    color: var(--primary-blue) !important;
+    font-weight: bold !important;
+}
+
+.st-emotion-cache-q8sbsg p {
+    color: var(--dark-gray) !important;
+    font-weight: 500 !important;
+}
+
+/* Streamlit specific elements */
+.st-emotion-cache-10trblm {
+    color: var(--primary-blue) !important;
+    font-weight: bold !important;
+}
+
+.st-emotion-cache-183lzff {
+    color: var(--dark-gray) !important;
+    font-weight: 500 !important;
+}
+
+.st-emotion-cache-16idsys p {
+    color: var(--dark-gray) !important;
+}
+
+/* Buttons */
+.stButton > button {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.stButton > button:hover {
+    background-color: var(--secondary-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Selectbox */
+.stSelectbox > div > div {
+    background-color: var(--white);
+    border: 1px solid var(--medium-gray);
+    border-radius: 5px;
+}
+
+/* Game Cards */
+.game-card {
+    background-color: var(--white);
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+    border-left: 5px solid var(--primary-blue);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.game-date {
+    font-weight: bold;
+    color: var(--primary-blue);
+}
+
+.game-opponent {
+    color: var(--dark-gray);
+}
+
+.game-result {
+    font-weight: bold;
+}
+
+.win {
+    color: var(--success-green);
+}
+
+.loss {
+    color: #dc3545;
+}
+
+.tie {
+    color: var(--warning-yellow);
+}
+
+/* Leaderboard Section */
+.leaderboard-section {
+    background-color: var(--white);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--medium-gray);
+}
+
+.leaderboard-title {
+    color: var(--primary-blue);
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--primary-blue);
+    padding-bottom: 0.5rem;
+}
+
+/* Dataframe styling */
+.stDataFrame {
+    background-color: var(--white);
+    border-radius: 5px;
+    padding: 0.5rem;
+    border: 1px solid var(--medium-gray);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .stat-card, .player-card, .game-card {
+        padding: 1rem;
+    }
+    
+    .metric-value {
+        font-size: 1.5rem;
+    }
+    
+    .metric-label {
+        font-size: 0.8rem;
+    }
+    
+    .styled-table th,
+    .styled-table td {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Login Page */
+.login-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.login-logo {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 1.5rem auto;
+}
+
+.login-title {
+    color: var(--primary-blue);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.login-button {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    padding: 0.75rem 1.5rem;
+    font-weight: bold;
+    width: 100%;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: var(--secondary-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}

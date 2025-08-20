@@ -322,73 +322,9 @@ p, li, span, div {
     border: 1px solid var(--medium-gray);
 }
 
-/* Mobile Only Content */
-.mobile-only, .mobile-only-nav {
-    display: none;
-}
-
-/* Mobile Navigation Button Styling - More specific selectors */
-@media (max-width: 768px) {
-    /* Target buttons with mob_ keys specifically */
-    button[key^="mob_"] {
-        height: 80px !important;
-        min-height: 80px !important;
-        font-size: 1.2rem !important;
-        font-weight: bold !important;
-        padding: 1rem 0.5rem !important;
-        white-space: pre-line !important;
-        line-height: 1.4 !important;
-        border-radius: 10px !important;
-        margin: 0.25rem 0 !important;
-    }
-    
-    /* Primary buttons (active) */
-    button[key^="mob_"][kind="primary"] {
-        background-color: var(--primary-blue) !important;
-        color: var(--white) !important;
-        border: none !important;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3) !important;
-    }
-    
-    /* Secondary buttons (inactive) */
-    button[key^="mob_"][kind="secondary"] {
-        background-color: var(--white) !important;
-        color: var(--primary-blue) !important;
-        border: 2px solid var(--primary-blue) !important;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
-    }
-    
-    /* Hover/Active states */
-    button[key^="mob_"]:hover,
-    button[key^="mob_"]:active {
-        transform: scale(0.98) !important;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4) !important;
-    }
-    
-    /* Ensure text displays properly */
-    button[key^="mob_"] > div {
-        white-space: pre-line !important;
-        line-height: 1.4 !important;
-    }
-    
-    /* Target the button container for better spacing */
-    div[data-testid="column"]:has(button[key^="mob_"]) {
-        padding: 0 0.25rem !important;
-    }
-}
 
 /* Mobile Responsive Styles */
 @media (max-width: 768px) {
-    /* Show mobile-only content */
-    .mobile-only, .mobile-only-nav {
-        display: block !important;
-    }
-    
-    /* Style the separator line */
-    .mobile-only-nav + div > hr {
-        margin-top: 0.5rem !important;
-        margin-bottom: 0.5rem !important;
-    }
     
     /* Keep sidebar available but collapsed by default */
     section[data-testid="stSidebar"] {
@@ -445,15 +381,6 @@ p, li, span, div {
 
 /* Desktop styles */
 @media (min-width: 769px) {
-    /* Hide mobile-only content on desktop */
-    .mobile-only, .mobile-only-nav {
-        display: none !important;
-    }
-    
-    /* Hide the separator after mobile nav on desktop */
-    .mobile-only-nav + div > hr {
-        display: none !important;
-    }
     
     /* Ensure sidebar is expanded on desktop */
     section[data-testid="stSidebar"] {

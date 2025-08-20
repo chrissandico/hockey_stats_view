@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile View Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #00205B;
+            font-size: 24px;
+        }
+        .info-box {
+            background-color: #e8f4f8;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .success {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .warning {
+            color: #ffc107;
+            font-weight: bold;
+        }
+        code {
+            background-color: #f0f0f0;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏒 Hockey Stats Mobile View Test</h1>
+        
+        <div class="info-box">
+            <h2>Mobile Navigation Updates</h2>
+            <p class="success">✅ CSS has been updated to fix mobile navigation issues!</p>
+        </div>
+        
+        <h3>Changes Made:</h3>
+        <ul>
+            <li><strong>Sidebar Auto-Collapse:</strong> The sidebar now automatically collapses on mobile devices (screens < 768px)</li>
+            <li><strong>Full Width Content:</strong> Main content area now uses 100% width when sidebar is collapsed</li>
+            <li><strong>Hamburger Menu:</strong> The menu button is fixed positioned and always visible on mobile</li>
+            <li><strong>Smooth Transitions:</strong> Added CSS transitions for smooth sidebar show/hide animations</li>
+            <li><strong>Touch-Friendly:</strong> Buttons have minimum 44px height for better touch targets</li>
+            <li><strong>Responsive Tables:</strong> Tables are now horizontally scrollable on mobile</li>
+        </ul>
+        
+        <h3>How to Test:</h3>
+        <ol>
+            <li>Access your app on your mobile phone</li>
+            <li>The sidebar should be hidden by default</li>
+            <li>Look for the hamburger menu (☰) button in the top-left corner</li>
+            <li>Tap the hamburger menu to show/hide the sidebar</li>
+            <li>When sidebar is hidden, content should use full screen width</li>
+        </ol>
+        
+        <div class="info-box">
+            <p class="warning">⚠️ Note: You may need to refresh the page on your mobile device for the CSS changes to take effect.</p>
+        </div>
+        
+        <h3>Technical Details:</h3>
+        <p>The following CSS features were implemented:</p>
+        <ul>
+            <li><code>transform: translateX(-100%)</code> to hide sidebar off-screen</li>
+            <li><code>@media (max-width: 768px)</code> for mobile-specific styles</li>
+            <li><code>position: fixed</code> for hamburger menu positioning</li>
+            <li><code>overflow-x: auto</code> for scrollable tables</li>
+            <li><code>width: 100%</code> for full-width content on mobile</li>
+        </ul>
+        
+        <p><strong>The app is already configured with:</strong></p>
+        <p><code>initial_sidebar_state="auto"</code> in the Streamlit page config, which works together with our CSS to provide optimal mobile experience.</p>
+    </div>
+</body>
+</html>

@@ -29,7 +29,15 @@ def check_password():
     
     def password_entered():
         """Checks whether a password entered by the user is correct."""
-        if hash_password(st.session_state["password"]) == st.secrets.get("TEAM_PASSWORD_HASH", ""):
+        entered_hash = hash_password(st.session_state["password"])
+        stored_hash = st.secrets.get("TEAM_PASSWORD_HASH", "")
+        
+        # Debug logging
+        print(f"DEBUG: Entered password hash: {entered_hash}")
+        print(f"DEBUG: Stored hash from secrets: {stored_hash}")
+        print(f"DEBUG: Hashes match: {entered_hash == stored_hash}")
+        
+        if entered_hash == stored_hash:
             st.session_state["authenticated"] = True
             del st.session_state["password"]  # Don't store password
         else:

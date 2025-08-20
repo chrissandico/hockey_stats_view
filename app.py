@@ -12,7 +12,7 @@ st.set_page_config(
     page_title="Hockey Statistics Dashboard",
     page_icon="🏒",
     layout="wide",
-    initial_sidebar_state="collapsed"  # Changed to collapsed for mobile
+    initial_sidebar_state="auto"  # Auto will collapse on mobile, expand on desktop
 )
 
 # Load custom CSS
@@ -38,22 +38,39 @@ else:
     # Main application
     st.title("Hockey Statistics Dashboard")
     
-    # Add mobile logout button in top right
-    col1, col2, col3 = st.columns([6, 1, 1])
-    with col3:
-        if st.button("🚪", key="mobile_logout", help="Logout"):
-            st.session_state.authenticated = False
-            st.rerun()
-    
-    # Navigation
-    st.sidebar.markdown('<h2 style="color: white; font-weight: bold;">Navigation</h2>', unsafe_allow_html=True)
-    
     # Navigation options
     nav_options = ["My Player's Stats", "Team Stats & Leaderboards", "Game Stats"]
     
     # Default to Team Stats & Leaderboards
     if 'nav_selection' not in st.session_state:
         st.session_state.nav_selection = "Team Stats & Leaderboards"
+    
+    # Mobile navigation at the top (visible on small screens via CSS)
+    st.markdown('<div class="mobile-nav-top">', unsafe_allow_html=True)
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        if st.button("📊 Player", key="mobile_player", use_container_width=True, 
+                     type="primary" if st.session_state.nav_selection == "My Player's Stats" else "secondary"):
+            st.session_state.nav_selection = "My Player's Stats"
+            st.rerun()
+    
+    with col2:
+        if st.button("🏆 Team", key="mobile_team", use_container_width=True,
+                     type="primary" if st.session_state.nav_selection == "Team Stats & Leaderboards" else "secondary"):
+            st.session_state.nav_selection = "Team Stats & Leaderboards"
+            st.rerun()
+    
+    with col3:
+        if st.button("🏒 Games", key="mobile_games", use_container_width=True,
+                     type="primary" if st.session_state.nav_selection == "Game Stats" else "secondary"):
+            st.session_state.nav_selection = "Game Stats"
+            st.rerun()
+    
+    st.markdown('</div>', unsafe_allow_html=True)
+    
+    # Sidebar navigation (for desktop)
+    st.sidebar.markdown('<h2 style="color: white; font-weight: bold;">Navigation</h2>', unsafe_allow_html=True)
     
     # Create navigation buttons in sidebar (for desktop)
     for option in nav_options:
@@ -65,70 +82,12 @@ else:
             st.session_state.nav_selection = option
             st.rerun()
     
-    # Add logout option
+    # Add logout option in sidebar
     st.sidebar.markdown("---")
     
     # Use Streamlit's button with custom styling
     if st.sidebar.button("Logout", key="logout_button", type="primary", use_container_width=True):
         st.session_state.authenticated = False
-        st.rerun()
-    
-    # Mobile bottom navigation - using HTML/CSS approach
-    current_page = st.session_state.nav_selection
-    player_active = "active" if current_page == "My Player's Stats" else ""
-    team_active = "active" if current_page == "Team Stats & Leaderboards" else ""
-    game_active = "active" if current_page == "Game Stats" else ""
-    
-    st.markdown(f"""
-    <div class="mobile-nav-container">
-        <div class="mobile-nav">
-            <div class="mobile-nav-item {player_active}" id="nav-player">
-                <span class="nav-icon">📊</span>
-                <span class="nav-label">Player</span>
-            </div>
-            <div class="mobile-nav-item {team_active}" id="nav-team">
-                <span class="nav-icon">🏆</span>
-                <span class="nav-label">Team</span>
-            </div>
-            <div class="mobile-nav-item {game_active}" id="nav-game">
-                <span class="nav-icon">🏒</span>
-                <span class="nav-label">Games</span>
-            </div>
-        </div>
-    </div>
-    
-    <script>
-    // Add click handlers for mobile navigation
-    document.addEventListener('DOMContentLoaded', function() {{
-        const navItems = document.querySelectorAll('.mobile-nav-item');
-        navItems.forEach(item => {{
-            item.addEventListener('click', function() {{
-                const id = this.id;
-                if (id === 'nav-player') {{
-                    window.location.href = '?nav=player';
-                }} else if (id === 'nav-team') {{
-                    window.location.href = '?nav=team';
-                }} else if (id === 'nav-game') {{
-                    window.location.href = '?nav=game';
-                }}
-            }});
-        }});
-    }});
-    </script>
-    """, unsafe_allow_html=True)
-    
-    # Handle URL parameters for mobile navigation
-    query_params = st.query_params
-    if "nav" in query_params:
-        nav_param = query_params["nav"]
-        if nav_param == "player":
-            st.session_state.nav_selection = "My Player's Stats"
-        elif nav_param == "team":
-            st.session_state.nav_selection = "Team Stats & Leaderboards"
-        elif nav_param == "game":
-            st.session_state.nav_selection = "Game Stats"
-        # Clear the query parameter
-        st.query_params.clear()
         st.rerun()
     
     # Load data

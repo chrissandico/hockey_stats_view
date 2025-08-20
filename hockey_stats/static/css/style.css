@@ -322,103 +322,55 @@ p, li, span, div {
     border: 1px solid var(--medium-gray);
 }
 
-/* Mobile Bottom Navigation */
-.mobile-nav-container {
+/* Mobile Navigation Top */
+.mobile-nav-top {
     display: none;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: var(--white);
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    padding-bottom: env(safe-area-inset-bottom);
+    margin-bottom: 1rem;
 }
 
-.mobile-nav {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 60px;
-    background-color: var(--primary-blue);
+/* Mobile Navigation Button Styling */
+.mobile-nav-top .stButton > button {
+    background-color: var(--primary-blue) !important;
+    color: var(--white) !important;
+    border: none !important;
+    border-radius: 5px !important;
+    padding: 0.75rem 0.5rem !important;
+    font-weight: bold !important;
+    font-size: 0.9rem !important;
+    min-height: 50px !important;
 }
 
-.mobile-nav-item {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    background: none;
-    border: none;
-    color: var(--white);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    padding: 0;
-    opacity: 0.7;
-    position: relative;
-    -webkit-tap-highlight-color: transparent;
+.mobile-nav-top .stButton > button[kind="secondary"] {
+    background-color: var(--accent-silver) !important;
+    color: var(--primary-blue) !important;
 }
 
-.mobile-nav-item:hover {
-    opacity: 0.9;
+.mobile-nav-top .stButton > button:hover {
+    background-color: var(--secondary-blue) !important;
+    color: var(--white) !important;
 }
 
-.mobile-nav-item:active {
-    transform: scale(0.95);
-}
-
-.mobile-nav-item.active {
-    opacity: 1;
-    background-color: var(--secondary-blue);
-}
-
-.mobile-nav-item.active::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background-color: var(--white);
-}
-
-.nav-icon {
-    font-size: 1.5rem;
-    margin-bottom: 2px;
-}
-
-.nav-label {
-    font-size: 0.75rem;
-    font-weight: bold;
-}
-
-/* Hide desktop sidebar on mobile */
+/* Mobile Responsive Styles */
 @media (max-width: 768px) {
-    /* Hide sidebar */
-    section[data-testid="stSidebar"] {
-        display: none !important;
-    }
-    
-    /* Show mobile navigation */
-    .mobile-nav-container {
-        display: block;
-    }
-    
-    /* Adjust main content to account for bottom nav */
-    .main .block-container {
-        padding-bottom: 80px !important;
-    }
-    
-    /* Hide the mobile nav buttons that Streamlit creates */
-    .stButton[data-testid="baseButton-secondary"] {
-        display: none;
-    }
-    
-    /* Show only the logout button in top right on mobile */
-    button[key="mobile_logout"] {
+    /* Show mobile navigation at top */
+    .mobile-nav-top {
         display: block !important;
+    }
+    
+    /* Keep sidebar available but collapsed by default */
+    section[data-testid="stSidebar"] {
+        z-index: 999 !important;
+    }
+    
+    /* Ensure hamburger menu is visible */
+    .css-1rs6os, .st-emotion-cache-1rs6os {
+        visibility: visible !important;
+        display: block !important;
+    }
+    
+    /* Adjust main content for Streamlit banner */
+    .main .block-container {
+        padding-bottom: 60px !important; /* Space for Streamlit banner */
     }
     
     /* Responsive adjustments */
@@ -443,36 +395,37 @@ p, li, span, div {
     /* Adjust title for mobile */
     h1 {
         font-size: 1.5rem !important;
-        margin-bottom: 1rem !important;
+        margin-bottom: 0.5rem !important;
     }
     
-    /* Hide the hamburger menu button */
-    button[kind="header"] {
-        display: none !important;
+    /* Ensure Streamlit's default mobile menu button is visible */
+    button[aria-label="Open sidebar"] {
+        display: block !important;
+        visibility: visible !important;
+    }
+    
+    /* Adjust column gaps on mobile */
+    .row-widget.stHorizontal {
+        gap: 0.5rem !important;
     }
 }
 
-/* Desktop styles - ensure sidebar is visible */
+/* Desktop styles */
 @media (min-width: 769px) {
     /* Hide mobile navigation on desktop */
-    .mobile-nav-container {
+    .mobile-nav-top {
         display: none !important;
     }
     
-    /* Hide mobile logout button on desktop */
-    button[key="mobile_logout"] {
-        display: none !important;
-    }
-    
-    /* Hide mobile nav buttons on desktop */
-    button[key^="mobile_nav_"] {
-        display: none !important;
+    /* Ensure sidebar is expanded on desktop */
+    section[data-testid="stSidebar"] {
+        display: block !important;
     }
 }
 
-/* Responsive Design */
+/* Additional Mobile Optimizations */
 @media (max-width: 768px) {
-    /* Additional mobile optimizations */
+    /* Streamlit app container adjustments */
     .stApp {
         padding-top: 0 !important;
     }
@@ -481,7 +434,19 @@ p, li, span, div {
     .main .block-container {
         padding-left: 1rem !important;
         padding-right: 1rem !important;
-        padding-top: 1rem !important;
+        padding-top: 0.5rem !important;
+        max-width: 100% !important;
+    }
+    
+    /* Ensure buttons are touch-friendly */
+    .stButton > button {
+        min-height: 44px !important;
+        touch-action: manipulation;
+    }
+    
+    /* Fix for Streamlit Community Cloud banner */
+    .stApp > div:last-child {
+        bottom: 0 !important;
     }
 }
 

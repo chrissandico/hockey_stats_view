@@ -469,43 +469,118 @@ p, li, span, div {
 
 /* Login Page */
 .login-container {
-    max-width: 400px;
+    max-width: 450px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 2.5rem;
     background-color: var(--white);
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 32, 91, 0.15);
     text-align: center;
-    margin-top: 3rem;
+    margin-top: 2rem;
+    border-top: 5px solid var(--primary-blue);
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.login-header {
+    margin-bottom: 2rem;
 }
 
 .login-logo {
     width: 100px;
     height: 100px;
     margin: 0 auto 1.5rem auto;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+    animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
 }
 
 .login-title {
     color: var(--primary-blue);
-    font-size: 1.8rem;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.login-subtitle {
+    color: var(--secondary-blue);
+    font-size: 1.1rem;
     margin-bottom: 1.5rem;
+}
+
+/* Style the password input field */
+div[data-baseweb="input"] {
+    border-radius: 8px !important;
+    border: 2px solid var(--medium-gray) !important;
+    transition: all 0.3s ease !important;
+}
+
+div[data-baseweb="input"]:focus-within {
+    border-color: var(--secondary-blue) !important;
+    box-shadow: 0 0 0 2px rgba(0, 160, 227, 0.2) !important;
+}
+
+/* Style the placeholder text */
+input::placeholder {
+    color: #aaa !important;
+    font-style: italic;
 }
 
 .login-button {
     background-color: var(--primary-blue);
     color: var(--white);
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     padding: 0.75rem 1.5rem;
     font-weight: bold;
     width: 100%;
     margin-top: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .login-button:hover {
     background-color: var(--secondary-blue);
     transform: translateY(-2px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Style the error message */
+.stAlert {
+    border-radius: 8px !important;
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* Responsive adjustments for login page */
+@media (max-width: 768px) {
+    .login-container {
+        max-width: 90%;
+        padding: 1.5rem;
+        margin-top: 1rem;
+    }
+    
+    .login-title {
+        font-size: 1.6rem;
+    }
+    
+    .login-subtitle {
+        font-size: 1rem;
+    }
 }

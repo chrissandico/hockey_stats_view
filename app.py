@@ -42,17 +42,24 @@ def check_password():
             del st.session_state["password"]  # Don't store password
         else:
             st.session_state["authenticated"] = False
+            # Track that a login attempt was made
+            st.session_state["password_attempt"] = True
 
     # First run or not authenticated
     if "authenticated" not in st.session_state:
         st.session_state["authenticated"] = False
+        # Initialize password_attempt to track if a login attempt was made
+        st.session_state["password_attempt"] = False
 
     if not st.session_state["authenticated"]:
-        # Show login form
+        # Show login form with enhanced styling
         st.markdown("""
         <div class="login-container">
-            <h1 class="login-title">🏒 Hockey Stats Dashboard</h1>
-            <p style="text-align: center; color: #666;">Team Members Only</p>
+            <div class="login-header">
+                <img src="https://cdn-icons-png.flaticon.com/512/2784/2784059.png" class="login-logo" alt="Hockey Logo">
+                <h1 class="login-title">Hockey Stats Dashboard</h1>
+                <p class="login-subtitle">Team Members Access Portal</p>
+            </div>
         </div>
         """, unsafe_allow_html=True)
         
@@ -71,8 +78,8 @@ def check_password():
             # Add some spacing
             st.markdown("<br>", unsafe_allow_html=True)
             
-            # Show error if password was incorrect
-            if st.session_state.get("authenticated") == False:
+            # Show error only if a password attempt was made and failed
+            if st.session_state.get("password_attempt") == True and st.session_state.get("authenticated") == False:
                 st.error("❌ Incorrect password. Please try again.")
                 
             # Add helpful text

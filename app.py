@@ -3,7 +3,7 @@ import pandas as pd
 import hashlib
 from pathlib import Path
 from hockey_stats.sheets_service import get_games_data, get_events_data, get_players_data, get_game_roster_data, calculate_game_results
-from hockey_stats.utils import load_css
+from hockey_stats.utils import load_css, local_image
 from hockey_stats.components.player_stats import player_stats_view
 from hockey_stats.components.team_stats import team_stats_view
 from hockey_stats.components.game_stats import game_stats_view
@@ -53,10 +53,11 @@ def check_password():
 
     if not st.session_state["authenticated"]:
         # Show login form with enhanced styling
-        st.markdown("""
+        logo_html = local_image("hockey_stats/static/images/markham_waxers_logo.png", width="100px")
+        st.markdown(f"""
         <div class="login-container">
             <div class="login-header">
-                <img src="https://cdn-icons-png.flaticon.com/512/2784/2784059.png" class="login-logo" alt="Hockey Logo">
+                <div class="login-logo">{logo_html}</div>
                 <h1 class="login-title">Hockey Stats Dashboard</h1>
                 <p class="login-subtitle">Team Members Access Portal</p>
             </div>

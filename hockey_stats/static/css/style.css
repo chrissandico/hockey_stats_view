@@ -16,7 +16,7 @@
 /* Base Styles */
 .stApp {
     background-color: var(--light-gray);
-    color: var(--dark-gray);
+    color: #000000 !important;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -27,7 +27,7 @@ h1, h2, h3, h4, h5, h6,
 .st-emotion-cache-16idsys p,
 .st-emotion-cache-183lzff,
 .custom-heading {
-    color: var(--primary-blue) !important;
+    color: #000000 !important;
     background-color: var(--light-gray) !important;
     padding: 8px !important;
     margin-bottom: 15px !important;
@@ -48,11 +48,11 @@ h1, h2, h3, h4, h5, h6,
 }
 
 p, li, span, div {
-    color: var(--dark-gray);
+    color: #000000 !important;
 }
 
 .stMarkdown {
-    color: var(--dark-gray);
+    color: #000000 !important;
 }
 
 /* Header Styling */
@@ -80,13 +80,13 @@ p, li, span, div {
 .st-emotion-cache-16idsys h1,
 .st-emotion-cache-16idsys h2,
 .st-emotion-cache-16idsys h3 {
-    color: var(--white) !important;
+    color: #000000 !important;
     font-weight: bold !important;
 }
 
 /* Sidebar navigation title */
 .st-emotion-cache-pkbazv {
-    color: var(--white) !important;
+    color: #000000 !important;
     font-weight: bold !important;
     font-size: 1.2rem !important;
 }
@@ -94,7 +94,7 @@ p, li, span, div {
 /* Navigation Links */
 .nav-link {
     background-color: var(--white);
-    color: var(--primary-blue);
+    color: #000000 !important;
     padding: 0.75rem 1rem;
     margin: 0.5rem 0;
     border-radius: 5px;
@@ -105,21 +105,21 @@ p, li, span, div {
 
 .nav-link:hover {
     background-color: var(--secondary-blue);
-    color: var(--white);
+    color: #000000 !important;
     transform: translateY(-2px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .nav-link.active {
     background-color: var(--secondary-blue);
-    color: var(--white);
+    color: #000000 !important;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Sidebar buttons styling */
 .stButton > button {
     background-color: var(--accent-silver) !important;
-    color: var(--primary-blue) !important;
+    color: #000000 !important;
     border: none !important;
     border-radius: 5px !important;
     padding: 0.5rem 1rem !important;
@@ -139,7 +139,7 @@ p, li, span, div {
 /* Active button styling */
 .stButton > button[kind="secondary"] {
     background-color: var(--secondary-blue) !important;
-    color: var(--white) !important;
+    color: #000000 !important;
 }
 
 /* Cards */
@@ -179,7 +179,7 @@ p, li, span, div {
 
 .styled-table thead tr {
     background-color: var(--primary-blue);
-    color: var(--white);
+    color: #000000 !important;
     text-align: left;
 }
 
@@ -214,46 +214,46 @@ p, li, span, div {
 .metric-value {
     font-size: 2rem;
     font-weight: bold;
-    color: var(--primary-blue);
+    color: #000000 !important;
 }
 
 .metric-label {
     font-size: 0.9rem;
-    color: var(--dark-gray);
+    color: #000000 !important;
     font-weight: bold;
     margin-top: 0.25rem;
 }
 
 /* Improve text visibility in metrics */
 .st-emotion-cache-1wivap2 {
-    color: var(--primary-blue) !important;
+    color: #000000 !important;
     font-weight: bold !important;
 }
 
 .st-emotion-cache-q8sbsg p {
-    color: var(--dark-gray) !important;
+    color: #000000 !important;
     font-weight: 500 !important;
 }
 
 /* Streamlit specific elements */
 .st-emotion-cache-10trblm {
-    color: var(--primary-blue) !important;
+    color: #000000 !important;
     font-weight: bold !important;
 }
 
 .st-emotion-cache-183lzff {
-    color: var(--dark-gray) !important;
+    color: #000000 !important;
     font-weight: 500 !important;
 }
 
 .st-emotion-cache-16idsys p {
-    color: var(--dark-gray) !important;
+    color: #000000 !important;
 }
 
 /* Buttons */
 .stButton > button {
     background-color: var(--primary-blue);
-    color: var(--white);
+    color: #000000 !important;
     border: none;
     border-radius: 5px;
     padding: 0.5rem 1rem;
@@ -293,11 +293,11 @@ p, li, span, div {
 
 .game-date {
     font-weight: bold;
-    color: var(--primary-blue);
+    color: #000000 !important;
 }
 
 .game-opponent {
-    color: var(--dark-gray);
+    color: #000000 !important;
 }
 
 .game-result {
@@ -305,15 +305,15 @@ p, li, span, div {
 }
 
 .win {
-    color: var(--success-green);
+    color: #000000 !important;
 }
 
 .loss {
-    color: #dc3545;
+    color: #000000 !important;
 }
 
 .tie {
-    color: var(--warning-yellow);
+    color: #000000 !important;
 }
 
 /* Leaderboard Section */
@@ -327,7 +327,7 @@ p, li, span, div {
 }
 
 .leaderboard-title {
-    color: var(--primary-blue);
+    color: #000000 !important;
     font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 1rem;
@@ -457,7 +457,7 @@ p, li, span, div {
         display: block !important;
         visibility: visible !important;
         opacity: 1 !important;
-        color: var(--primary-blue) !important;
+        color: #000000 !important;
         background-color: var(--light-gray) !important;
         padding: 8px !important;
         margin-bottom: 15px !important;
@@ -485,7 +485,7 @@ p, li, span, div {
         display: block !important;
         margin-top: 1em !important;
         margin-bottom: 1em !important;
-        color: var(--primary-blue) !important;
+        color: #000000 !important;
         background-color: var(--light-gray) !important;
         padding: 8px !important;
         border: 1px solid var(--secondary-blue) !important;
@@ -545,7 +545,7 @@ p, li, span, div {
     /* Indicator for horizontal scrolling */
     .scroll-indicator {
         text-align: center;
-        color: var(--secondary-blue);
+        color: #000000 !important;
         font-size: 0.8rem;
         margin-bottom: 0.5rem;
     }
@@ -636,7 +636,7 @@ p, li, span, div {
 }
 
 .login-title {
-    color: var(--primary-blue);
+    color: #000000 !important;
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 0.5rem;
@@ -644,7 +644,7 @@ p, li, span, div {
 }
 
 .login-subtitle {
-    color: var(--secondary-blue);
+    color: #000000 !important;
     font-size: 1.1rem;
     margin-bottom: 1.5rem;
 }

@@ -29,8 +29,9 @@ h1, h2, h3, h4, h5, h6,
 .custom-heading {
     color: #000000 !important;
     background-color: var(--light-gray) !important;
-    padding: 8px !important;
-    margin-bottom: 15px !important;
+    padding: 12px !important; /* Increased padding */
+    margin-top: 25px !important; /* Added top margin for spacing */
+    margin-bottom: 20px !important; /* Increased bottom margin */
     border: 1px solid var(--secondary-blue) !important;
     border-radius: 4px !important;
     font-weight: 700 !important; /* Bold but not ultra bold for better compatibility */
@@ -45,6 +46,14 @@ h1, h2, h3, h4, h5, h6,
     -webkit-font-smoothing: antialiased !important; /* Improve text rendering */
     -moz-osx-font-smoothing: grayscale !important;
     text-rendering: optimizeLegibility !important;
+    position: relative !important; /* Ensure proper positioning */
+    z-index: 5 !important; /* Ensure proper stacking */
+    clear: both !important; /* Prevent wrapping issues */
+}
+
+/* Add extra space after paragraphs */
+p {
+    margin-bottom: 16px !important;
 }
 
 p, li, span, div {
@@ -347,37 +356,36 @@ p, li, span, div {
 /* Mobile Responsive Styles */
 @media (max-width: 768px) {
     
-    /* Force sidebar to be collapsed by default on mobile */
+    /* Keep sidebar visible on mobile, similar to desktop */
     section[data-testid="stSidebar"] {
         z-index: 999 !important;
-        transform: translateX(-100%) !important;
-        transition: transform 0.3s ease !important;
+        transform: translateX(0) !important; /* Keep sidebar visible */
+        width: 100% !important; /* Full width when visible */
+        position: relative !important;
+        margin-bottom: 20px !important; /* Add space between sidebar and content */
     }
     
-    /* Show sidebar when expanded */
+    /* No need for expanded state since sidebar is always visible */
     section[data-testid="stSidebar"][aria-expanded="true"] {
         transform: translateX(0) !important;
     }
     
-    /* Ensure hamburger menu is visible and properly positioned */
+    /* Hide hamburger menu since sidebar is always visible */
     .css-1rs6os, .st-emotion-cache-1rs6os,
     button[kind="header"], 
     .st-emotion-cache-1p1m4ay,
     .st-emotion-cache-zt5igj {
-        visibility: visible !important;
-        display: block !important;
-        position: fixed !important;
-        top: 0.5rem !important;
-        left: 0.5rem !important;
-        z-index: 1000 !important;
+        visibility: hidden !important;
+        display: none !important;
     }
     
-    /* Ensure main content uses full width when sidebar is collapsed */
+    /* Adjust main content to work with visible sidebar */
     .main .block-container {
         padding-bottom: 60px !important; /* Space for Streamlit banner */
         max-width: 100% !important;
         padding-left: 1rem !important;
         padding-right: 1rem !important;
+        clear: both !important; /* Ensure content flows below sidebar */
     }
     
     /* Adjust main content area to use full width */
@@ -414,7 +422,7 @@ p, li, span, div {
     h1 {
         font-size: 1.5rem !important;
         margin-bottom: 0.5rem !important;
-        padding-top: 3rem !important; /* Space for hamburger menu */
+        padding-top: 1rem !important; /* Reduced padding since no hamburger menu */
     }
     
     /* Ensure Streamlit's default mobile menu button is visible */
@@ -459,8 +467,9 @@ p, li, span, div {
         opacity: 1 !important;
         color: #000000 !important;
         background-color: var(--light-gray) !important;
-        padding: 8px !important;
-        margin-bottom: 15px !important;
+        padding: 12px !important; /* Increased padding */
+        margin-top: 25px !important; /* Added top margin for spacing */
+        margin-bottom: 20px !important; /* Increased bottom margin */
         border: 1px solid var(--secondary-blue) !important;
         border-radius: 4px !important;
         font-weight: 700 !important;
@@ -474,8 +483,9 @@ p, li, span, div {
         -webkit-font-smoothing: antialiased !important; /* Improve text rendering */
         -moz-osx-font-smoothing: grayscale !important;
         text-rendering: optimizeLegibility !important;
-        z-index: 1 !important; /* Ensure proper stacking */
+        z-index: 10 !important; /* Increased z-index to ensure proper stacking */
         position: relative !important; /* Enable proper z-index */
+        clear: both !important; /* Prevent wrapping issues */
     }
     
     /* Fallback for Android Chrome - custom heading class */
@@ -483,14 +493,17 @@ p, li, span, div {
         font-size: 1.17em !important;
         font-weight: bold !important;
         display: block !important;
-        margin-top: 1em !important;
-        margin-bottom: 1em !important;
+        margin-top: 25px !important; /* Increased top margin */
+        margin-bottom: 20px !important; /* Increased bottom margin */
         color: #000000 !important;
         background-color: var(--light-gray) !important;
-        padding: 8px !important;
+        padding: 12px !important; /* Increased padding */
         border: 1px solid var(--secondary-blue) !important;
         border-radius: 4px !important;
         text-align: left !important;
+        position: relative !important;
+        z-index: 10 !important; /* Increased z-index */
+        clear: both !important; /* Prevent wrapping issues */
     }
     
     /* Streamlit app container adjustments */

@@ -67,7 +67,7 @@ function fixHeadings() {
                 display: block !important;
                 visibility: visible !important;
                 opacity: 1 !important;
-                color: #00205B !important;
+                color: #000000 !important;
                 background-color: #F0F2F5 !important;
                 padding: 8px !important;
                 margin-bottom: 15px !important;
@@ -75,7 +75,7 @@ function fixHeadings() {
                 border-radius: 4px !important;
                 font-weight: 700 !important;
                 position: relative !important;
-                z-index: 1 !important;
+                z-index: 10 !important; /* Increased z-index to ensure visibility */
             `;
         }
     });

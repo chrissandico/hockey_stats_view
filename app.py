@@ -53,14 +53,14 @@ def check_password():
         st.session_state["password_attempt"] = False
 
     if not st.session_state["authenticated"]:
-        # Show login form with enhanced styling
+        # Show login form with enhanced styling and direct HTML styling for better visibility
         logo_html = local_image("hockey_stats/static/images/markham_waxers_logo.png", width="100px")
         st.markdown(f"""
-        <div class="login-container">
-            <div class="login-header">
-                <div class="login-logo">{logo_html}</div>
-                <h1 class="login-title">Hockey Stats Dashboard</h1>
-                <p class="login-subtitle">Team Members Access Portal</p>
+        <div class="login-container" style="background-color: #FFFFFF; border-radius: 15px; box-shadow: 0 8px 25px rgba(0, 32, 91, 0.15); padding: 2rem; text-align: center; margin: 0 auto; max-width: 450px; border-top: 5px solid #00205B;">
+            <div class="login-header" style="margin-bottom: 1.5rem;">
+                <div class="login-logo" style="width: 100px; margin: 0 auto 1.5rem auto;">{logo_html}</div>
+                <h1 style="color: #00205B; font-size: 1.8rem; font-weight: bold; margin-bottom: 0.5rem; text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);">Hockey Stats Dashboard</h1>
+                <p style="color: #00A0E3; font-size: 1.1rem; margin-bottom: 1rem;">Team Members Access Portal</p>
             </div>
         </div>
         """, unsafe_allow_html=True)
@@ -100,7 +100,11 @@ if not check_password():
     st.stop()
 
 # Main application (only runs if authenticated)
-st.title("🏒 Hockey Statistics Dashboard")
+st.markdown("""
+    <h1 style="color: #00205B; background-color: #F0F2F5; padding: 10px; 
+    border-bottom: 3px solid #00A0E3; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); 
+    font-weight: 700; margin-bottom: 20px;">🏒 Hockey Statistics Dashboard</h1>
+""", unsafe_allow_html=True)
 
 # Navigation options
 nav_options = ["My Player's Stats", "Team Stats & Leaderboards", "Game Stats"]
@@ -109,26 +113,32 @@ nav_options = ["My Player's Stats", "Team Stats & Leaderboards", "Game Stats"]
 if 'nav_selection' not in st.session_state:
     st.session_state.nav_selection = "Team Stats & Leaderboards"
 
-# Sidebar navigation (for desktop)
-st.sidebar.markdown('<h2 style="color: white; font-weight: bold;">Navigation</h2>', unsafe_allow_html=True)
+# Create a container for top navigation
+nav_container = st.container()
 
-# Create navigation buttons in sidebar (for desktop)
-for option in nav_options:
-    is_active = st.session_state.nav_selection == option
-    button_type = "primary" if is_active else "secondary"
+# Create a row of buttons for navigation
+with nav_container:
+    cols = st.columns(3)
     
-    # Use Streamlit's button with custom styling
-    if st.sidebar.button(option, key=f"nav_{option}", type=button_type, use_container_width=True):
-        st.session_state.nav_selection = option
+    # Style each button as a box
+    for i, option in enumerate(nav_options):
+        is_active = st.session_state.nav_selection == option
+        button_style = "primary" if is_active else "secondary"
+        
+        # Each button in its own column
+        if cols[i].button(option, key=f"nav_{option}", type=button_style, use_container_width=True):
+            st.session_state.nav_selection = option
+            st.rerun()
+
+# Add logout button at the top right
+logout_col1, logout_col2 = st.columns([4, 1])
+with logout_col2:
+    if st.button("Logout", key="logout_button", type="primary", use_container_width=True):
+        st.session_state["authenticated"] = False
         st.rerun()
 
-# Add logout option in sidebar
-st.sidebar.markdown("---")
-
-# Use Streamlit's button with custom styling
-if st.sidebar.button("Logout", key="logout_button", type="primary", use_container_width=True):
-    st.session_state["authenticated"] = False
-    st.rerun()
+# Add a separator
+st.markdown("<hr>", unsafe_allow_html=True)
 
 # Load data
 with st.spinner("Loading data..."):

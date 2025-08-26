@@ -22,27 +22,40 @@ def team_stats_view(players_df, games_df, events_df, game_roster_df):
     # Calculate team stats
     team_stats = calculate_team_stats(games_df)
     
-    # Display team season summary
-    st.markdown("### Season Summary")
+    # Display team season summary with direct HTML styling for heading
+    st.markdown("""
+        <h3 style="color: #00205B; background-color: #F0F2F5; padding: 8px; 
+        border-bottom: 2px solid #00A0E3; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); 
+        font-weight: 700; margin-bottom: 15px;">Season Summary</h3>
+    """, unsafe_allow_html=True)
     
-    # Add a container for horizontal scrolling on mobile
-    st.markdown('<div class="scroll-indicator">Swipe horizontally to see more stats →</div>', unsafe_allow_html=True)
-    st.markdown('<div class="stats-scroll-container">', unsafe_allow_html=True)
-    
-    # Create metrics that will be wrapped in the scroll container
-    display_metric("Record", f"{team_stats['wins']}-{team_stats['losses']}-{team_stats['ties']}")
-    display_metric("Points", team_stats['points'])
-    display_metric("Goals For", team_stats['goals_for'])
-    display_metric("Goals Against", team_stats['goals_against'])
-    
-    goal_diff = team_stats['goals_for'] - team_stats['goals_against']
-    display_metric("Goal Differential", goal_diff, delta_color="normal")
-    
+    # Calculate win percentage
     win_pct = team_stats['wins'] / (team_stats['wins'] + team_stats['losses'] + team_stats['ties']) * 100 if (team_stats['wins'] + team_stats['losses'] + team_stats['ties']) > 0 else 0
-    display_metric("Win %", f"{win_pct:.1f}%")
+    goal_diff = team_stats['goals_for'] - team_stats['goals_against']
     
-    # Close the container
-    st.markdown('</div>', unsafe_allow_html=True)
+    # Create a DataFrame with the stats
+    stats_df = pd.DataFrame({
+        'Metric': ['Record', 'Points', 'Goals For', 'Goals Against', 'Goal Differential', 'Win %'],
+        'Value': [
+            f"{team_stats['wins']}-{team_stats['losses']}-{team_stats['ties']}",
+            team_stats['points'],
+            team_stats['goals_for'],
+            team_stats['goals_against'],
+            goal_diff,
+            f"{win_pct:.1f}%"
+        ]
+    })
+
+    # Display as a styled table
+    st.dataframe(
+        stats_df,
+        column_config={
+            'Metric': st.column_config.TextColumn("Stat"),
+            'Value': st.column_config.TextColumn("Value")
+        },
+        hide_index=True,
+        use_container_width=True
+    )
     
     # Calculate player season stats
     player_stats = []

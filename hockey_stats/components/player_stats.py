@@ -146,23 +146,36 @@ def player_stats_view(players_df, games_df, events_df, game_roster_df):
                     else:
                         plus_minus -= 1
     
-    # Display game stats in a nice grid
-    st.markdown(f"### Game: {selected_game.get('Date', '')} vs {selected_game.get('Opponent', '')}")
+    # Display game stats with direct HTML styling for heading
+    st.markdown(f"""
+        <h3 style="color: #00205B; background-color: #F0F2F5; padding: 8px; 
+        border-bottom: 2px solid #00A0E3; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); 
+        font-weight: 700; margin-bottom: 15px;">Game: {selected_game.get('Date', '')} vs {selected_game.get('Opponent', '')}</h3>
+    """, unsafe_allow_html=True)
     
-    # Add a container for horizontal scrolling on mobile
-    st.markdown('<div class="scroll-indicator">Swipe horizontally to see more stats →</div>', unsafe_allow_html=True)
-    st.markdown('<div class="stats-scroll-container">', unsafe_allow_html=True)
-    
-    # Create metrics that will be wrapped in the scroll container
-    display_metric("Goals", goals)
-    display_metric("Assists", assists)
-    display_metric("Points", goals + assists)
-    display_metric("Plus/Minus", plus_minus, delta_color="normal")
-    display_metric("Shots", shots)
-    display_metric("PIM", penalty_minutes)
-    
-    # Close the container
-    st.markdown('</div>', unsafe_allow_html=True)
+    # Create a DataFrame with the game stats
+    game_stats_df = pd.DataFrame({
+        'Metric': ['Goals', 'Assists', 'Points', 'Plus/Minus', 'Shots', 'PIM'],
+        'Value': [
+            goals,
+            assists,
+            goals + assists,
+            plus_minus,
+            shots,
+            penalty_minutes
+        ]
+    })
+
+    # Display as a styled table
+    st.dataframe(
+        game_stats_df,
+        column_config={
+            'Metric': st.column_config.TextColumn("Stat"),
+            'Value': st.column_config.TextColumn("Value")
+        },
+        hide_index=True,
+        use_container_width=True
+    )
     
     # Season stats section
     st.markdown("---")
@@ -211,25 +224,41 @@ def player_stats_view(players_df, games_df, events_df, game_roster_df):
                     else:
                         season_plus_minus -= 1
     
-    # Display season totals with horizontal scrolling on mobile
-    st.markdown('<div class="scroll-indicator">Swipe horizontally to see more stats →</div>', unsafe_allow_html=True)
-    st.markdown('<div class="stats-scroll-container">', unsafe_allow_html=True)
-    
-    # Create metrics that will be wrapped in the scroll container
-    display_metric("Games Played", games_played)
-    display_metric("Season Goals", season_goals)
-    display_metric("Season Assists", season_assists)
-    display_metric("Season Points", season_goals + season_assists)
-    display_metric("Season Shots", season_shots)
-    display_metric("Season +/-", season_plus_minus, delta_color="normal")
-    display_metric("Season PIM", season_pim)
+    # Display season stats with direct HTML styling for heading
+    st.markdown("""
+        <h3 style="color: #00205B; background-color: #F0F2F5; padding: 8px; 
+        border-bottom: 2px solid #00A0E3; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); 
+        font-weight: 700; margin-bottom: 15px;">Season Statistics</h3>
+    """, unsafe_allow_html=True)
     
     # Calculate goals per game
     gpg = season_goals / games_played if games_played > 0 else 0
-    display_metric("Goals/Game", f"{gpg:.2f}")
     
-    # Close the container
-    st.markdown('</div>', unsafe_allow_html=True)
+    # Create a DataFrame with the season stats
+    season_stats_df = pd.DataFrame({
+        'Metric': ['Games Played', 'Goals', 'Assists', 'Points', 'Shots', '+/-', 'PIM', 'Goals/Game'],
+        'Value': [
+            games_played,
+            season_goals,
+            season_assists,
+            season_goals + season_assists,
+            season_shots,
+            season_plus_minus,
+            season_pim,
+            f"{gpg:.2f}"
+        ]
+    })
+
+    # Display as a styled table
+    st.dataframe(
+        season_stats_df,
+        column_config={
+            'Metric': st.column_config.TextColumn("Stat"),
+            'Value': st.column_config.TextColumn("Value")
+        },
+        hide_index=True,
+        use_container_width=True
+    )
     
     # Game log
     st.markdown("---")

@@ -59,19 +59,12 @@ def game_stats_view(players_df, games_df, events_df, game_roster_df):
     elif result == 'L':
         result_color = "inverse"  # Red color for losses
     
-    # Display game summary with horizontal scrolling on mobile
-    st.markdown('<div class="scroll-indicator">Swipe horizontally to see more stats →</div>', unsafe_allow_html=True)
-    st.markdown('<div class="stats-scroll-container">', unsafe_allow_html=True)
-    
-    # Display result with appropriate styling
-    if result == 'W':
-        display_metric("Result", result, delta="Win", delta_color="normal")
-    elif result == 'L':
-        display_metric("Result", result, delta="Loss", delta_color="inverse")
-    else:
-        display_metric("Result", result)
-    
-    display_metric("Score", f"{goals_for}-{goals_against}")
+    # Display game details with direct HTML styling for heading
+    st.markdown(f"""
+        <h3 style="color: #00205B; background-color: #F0F2F5; padding: 8px; 
+        border-bottom: 2px solid #00A0E3; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); 
+        font-weight: 700; margin-bottom: 15px;">{selected_game.get('Date', '')} vs {selected_game.get('Opponent', '')}</h3>
+    """, unsafe_allow_html=True)
     
     # Get game events
     game_events = events_df[events_df['GameID'] == selected_game_id]
@@ -85,13 +78,29 @@ def game_stats_view(players_df, games_df, events_df, game_roster_df):
     power_play_opportunities = len(game_events[game_events['EventType'] == 'PowerPlay']) if 'EventType' in game_events.columns else 0
     power_play_pct = (power_play_goals / power_play_opportunities * 100) if power_play_opportunities > 0 else 0
     
-    display_metric("Shots", shots)
-    display_metric("Penalty Minutes", penalty_minutes)
-    display_metric("Power Play", f"{power_play_goals}/{power_play_opportunities}")
-    display_metric("Power Play %", f"{power_play_pct:.1f}%")
-    
-    # Close the container
-    st.markdown('</div>', unsafe_allow_html=True)
+    # Create a DataFrame with the game stats
+    game_stats_df = pd.DataFrame({
+        'Metric': ['Result', 'Score', 'Shots', 'Penalty Minutes', 'Power Play', 'Power Play %'],
+        'Value': [
+            result,
+            f"{goals_for}-{goals_against}",
+            shots,
+            penalty_minutes,
+            f"{power_play_goals}/{power_play_opportunities}",
+            f"{power_play_pct:.1f}%"
+        ]
+    })
+
+    # Display as a styled table
+    st.dataframe(
+        game_stats_df,
+        column_config={
+            'Metric': st.column_config.TextColumn("Stat"),
+            'Value': st.column_config.TextColumn("Value")
+        },
+        hide_index=True,
+        use_container_width=True
+    )
     
     # Player performance table - Wrap in collapsible section for mobile
     st.markdown("---")

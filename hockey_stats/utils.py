@@ -8,6 +8,12 @@ def load_css():
     css_file = Path(__file__).parent / "static/css/style.css"
     with open(css_file) as f:
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+        
+def load_js():
+    """Load custom JavaScript for mobile optimizations"""
+    js_file = Path(__file__).parent / "static/js/mobile_helpers.js"
+    with open(js_file) as f:
+        st.markdown(f'<script>{f.read()}</script>', unsafe_allow_html=True)
 
 def local_image(image_path, width=None):
     """Display a local image with optional width"""

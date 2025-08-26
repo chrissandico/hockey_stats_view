@@ -25,21 +25,24 @@ def team_stats_view(players_df, games_df, events_df, game_roster_df):
     # Display team season summary
     st.markdown("### Season Summary")
     
-    col1, col2, col3 = st.columns(3)
+    # Add a container for horizontal scrolling on mobile
+    st.markdown('<div class="scroll-indicator">Swipe horizontally to see more stats →</div>', unsafe_allow_html=True)
+    st.markdown('<div class="stats-scroll-container">', unsafe_allow_html=True)
     
-    with col1:
-        display_metric("Record", f"{team_stats['wins']}-{team_stats['losses']}-{team_stats['ties']}")
-        display_metric("Points", team_stats['points'])
+    # Create metrics that will be wrapped in the scroll container
+    display_metric("Record", f"{team_stats['wins']}-{team_stats['losses']}-{team_stats['ties']}")
+    display_metric("Points", team_stats['points'])
+    display_metric("Goals For", team_stats['goals_for'])
+    display_metric("Goals Against", team_stats['goals_against'])
     
-    with col2:
-        display_metric("Goals For", team_stats['goals_for'])
-        display_metric("Goals Against", team_stats['goals_against'])
+    goal_diff = team_stats['goals_for'] - team_stats['goals_against']
+    display_metric("Goal Differential", goal_diff, delta_color="normal")
     
-    with col3:
-        goal_diff = team_stats['goals_for'] - team_stats['goals_against']
-        display_metric("Goal Differential", goal_diff, delta_color="normal")
-        win_pct = team_stats['wins'] / (team_stats['wins'] + team_stats['losses'] + team_stats['ties']) * 100 if (team_stats['wins'] + team_stats['losses'] + team_stats['ties']) > 0 else 0
-        display_metric("Win %", f"{win_pct:.1f}%")
+    win_pct = team_stats['wins'] / (team_stats['wins'] + team_stats['losses'] + team_stats['ties']) * 100 if (team_stats['wins'] + team_stats['losses'] + team_stats['ties']) > 0 else 0
+    display_metric("Win %", f"{win_pct:.1f}%")
+    
+    # Close the container
+    st.markdown('</div>', unsafe_allow_html=True)
     
     # Calculate player season stats
     player_stats = []
@@ -109,8 +112,13 @@ def team_stats_view(players_df, games_df, events_df, game_roster_df):
     st.markdown("---")
     st.markdown("## Leaderboards")
     
-    # Forward Leaderboards
+    # Forward Leaderboards - Wrap in collapsible section for mobile
+    st.markdown('<div class="collapsible-section">', unsafe_allow_html=True)
+    st.markdown('<div class="collapsible-header">', unsafe_allow_html=True)
     st.markdown("### Forward Leaderboards")
+    st.markdown('<span class="collapsible-arrow">▼</span>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('<div class="collapsible-content">', unsafe_allow_html=True)
     
     # Check if we have forwards
     forwards_df = player_stats_df[player_stats_df['Position'] == 'F'].copy() if not player_stats_df.empty else pd.DataFrame()
@@ -177,8 +185,17 @@ def team_stats_view(players_df, games_df, events_df, game_roster_df):
     else:
         st.info("No forward data available.")
     
-    # Defensemen Leaderboards
+    # Close the forward leaderboards collapsible section
+    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
+    
+    # Defensemen Leaderboards - Wrap in collapsible section for mobile
+    st.markdown('<div class="collapsible-section">', unsafe_allow_html=True)
+    st.markdown('<div class="collapsible-header">', unsafe_allow_html=True)
     st.markdown("### Defensemen Leaderboards")
+    st.markdown('<span class="collapsible-arrow">▼</span>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('<div class="collapsible-content">', unsafe_allow_html=True)
     
     # Check if we have defensemen
     defensemen_df = player_stats_df[player_stats_df['Position'] == 'D'].copy() if not player_stats_df.empty else pd.DataFrame()
@@ -266,8 +283,17 @@ def team_stats_view(players_df, games_df, events_df, game_roster_df):
     else:
         st.info("No defensemen data available.")
     
-    # Goalie Leaderboards
+    # Close the defensemen leaderboards collapsible section
+    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
+    
+    # Goalie Leaderboards - Wrap in collapsible section for mobile
+    st.markdown('<div class="collapsible-section">', unsafe_allow_html=True)
+    st.markdown('<div class="collapsible-header">', unsafe_allow_html=True)
     st.markdown("### Goalie Statistics")
+    st.markdown('<span class="collapsible-arrow">▼</span>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('<div class="collapsible-content">', unsafe_allow_html=True)
     
     # Check if we have goalies
     goalies_df = player_stats_df[player_stats_df['Position'] == 'G'].copy() if not player_stats_df.empty else pd.DataFrame()
@@ -350,9 +376,18 @@ def team_stats_view(players_df, games_df, events_df, game_roster_df):
     else:
         st.info("No goalie data available.")
     
-    # Game Log
+    # Close the goalie statistics collapsible section
+    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
+    
+    # Game Log - Wrap in collapsible section for mobile
     st.markdown("---")
+    st.markdown('<div class="collapsible-section">', unsafe_allow_html=True)
+    st.markdown('<div class="collapsible-header">', unsafe_allow_html=True)
     st.markdown("## Team Game Log")
+    st.markdown('<span class="collapsible-arrow">▼</span>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('<div class="collapsible-content">', unsafe_allow_html=True)
     
     # Create game log
     if not games_df.empty:
@@ -374,3 +409,7 @@ def team_stats_view(players_df, games_df, events_df, game_roster_df):
         )
     else:
         st.info("No game log data available.")
+    
+    # Close the game log collapsible section
+    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)

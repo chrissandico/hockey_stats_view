@@ -149,19 +149,20 @@ def player_stats_view(players_df, games_df, events_df, game_roster_df):
     # Display game stats in a nice grid
     st.markdown(f"### Game: {selected_game.get('Date', '')} vs {selected_game.get('Opponent', '')}")
     
-    # Create metrics in a grid
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        display_metric("Goals", goals)
-        display_metric("Shots", shots)
+    # Add a container for horizontal scrolling on mobile
+    st.markdown('<div class="scroll-indicator">Swipe horizontally to see more stats →</div>', unsafe_allow_html=True)
+    st.markdown('<div class="stats-scroll-container">', unsafe_allow_html=True)
     
-    with col2:
-        display_metric("Assists", assists)
-        display_metric("Points", goals + assists)
+    # Create metrics that will be wrapped in the scroll container
+    display_metric("Goals", goals)
+    display_metric("Assists", assists)
+    display_metric("Points", goals + assists)
+    display_metric("Plus/Minus", plus_minus, delta_color="normal")
+    display_metric("Shots", shots)
+    display_metric("PIM", penalty_minutes)
     
-    with col3:
-        display_metric("Plus/Minus", plus_minus, delta_color="normal")
-        display_metric("PIM", penalty_minutes)
+    # Close the container
+    st.markdown('</div>', unsafe_allow_html=True)
     
     # Season stats section
     st.markdown("---")
@@ -210,25 +211,25 @@ def player_stats_view(players_df, games_df, events_df, game_roster_df):
                     else:
                         season_plus_minus -= 1
     
-    # Display season totals
-    col1, col2, col3, col4 = st.columns(4)
-    with col1:
-        display_metric("Games Played", games_played)
-        display_metric("Season Goals", season_goals)
+    # Display season totals with horizontal scrolling on mobile
+    st.markdown('<div class="scroll-indicator">Swipe horizontally to see more stats →</div>', unsafe_allow_html=True)
+    st.markdown('<div class="stats-scroll-container">', unsafe_allow_html=True)
     
-    with col2:
-        display_metric("Season Assists", season_assists)
-        display_metric("Season Points", season_goals + season_assists)
+    # Create metrics that will be wrapped in the scroll container
+    display_metric("Games Played", games_played)
+    display_metric("Season Goals", season_goals)
+    display_metric("Season Assists", season_assists)
+    display_metric("Season Points", season_goals + season_assists)
+    display_metric("Season Shots", season_shots)
+    display_metric("Season +/-", season_plus_minus, delta_color="normal")
+    display_metric("Season PIM", season_pim)
     
-    with col3:
-        display_metric("Season Shots", season_shots)
-        display_metric("Season +/-", season_plus_minus, delta_color="normal")
-        
-    with col4:
-        display_metric("Season PIM", season_pim)
-        # Calculate goals per game
-        gpg = season_goals / games_played if games_played > 0 else 0
-        display_metric("Goals/Game", f"{gpg:.2f}")
+    # Calculate goals per game
+    gpg = season_goals / games_played if games_played > 0 else 0
+    display_metric("Goals/Game", f"{gpg:.2f}")
+    
+    # Close the container
+    st.markdown('</div>', unsafe_allow_html=True)
     
     # Game log
     st.markdown("---")

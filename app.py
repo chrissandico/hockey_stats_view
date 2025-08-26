@@ -3,7 +3,7 @@ import pandas as pd
 import hashlib
 from pathlib import Path
 from hockey_stats.sheets_service import get_games_data, get_events_data, get_players_data, get_game_roster_data, calculate_game_results
-from hockey_stats.utils import load_css, local_image
+from hockey_stats.utils import load_css, load_js, local_image
 from hockey_stats.components.player_stats import player_stats_view
 from hockey_stats.components.team_stats import team_stats_view
 from hockey_stats.components.game_stats import game_stats_view
@@ -16,8 +16,9 @@ st.set_page_config(
     initial_sidebar_state="auto"  # Auto will collapse on mobile, expand on desktop
 )
 
-# Load custom CSS
+# Load custom CSS and JavaScript
 load_css()
+load_js()
 
 # Authentication functions
 def hash_password(password):

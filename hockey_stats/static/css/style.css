@@ -6,7 +6,7 @@
     --secondary-blue: #00A0E3; /* Lighter blue for accents */
     --accent-silver: #C4CED4; /* Silver accent color */
     --white: #FFFFFF;
-    --light-gray: #F5F5F5;
+    --light-gray: #F0F2F5;    /* Lighter background gray for better contrast */
     --medium-gray: #E0E0E0;
     --dark-gray: #333333;
     --success-green: #28a745;
@@ -24,6 +24,7 @@
 h1, h2, h3, h4, h5, h6 {
     color: var(--primary-blue);
     font-weight: bold;
+    text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.8); /* Subtle text shadow for better contrast */
 }
 
 p, li, span, div {
@@ -455,6 +456,54 @@ p, li, span, div {
         padding: 0.5rem !important;
     }
     
+    /* Horizontal scrolling stats container for mobile */
+    .stats-scroll-container {
+        display: flex;
+        overflow-x: auto;
+        padding-bottom: 1rem;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+    }
+    
+    .stats-scroll-container .metric-container {
+        min-width: 160px;
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+        margin-bottom: 0;
+    }
+    
+    /* Indicator for horizontal scrolling */
+    .scroll-indicator {
+        text-align: center;
+        color: var(--secondary-blue);
+        font-size: 0.8rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Collapsible sections */
+    .collapsible-section {
+        border: 1px solid var(--medium-gray);
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        overflow: hidden;
+    }
+    
+    .collapsible-header {
+        background-color: var(--light-gray);
+        padding: 0.75rem;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .collapsible-content {
+        padding: 0.75rem;
+        background-color: var(--white);
+    }
+    
     /* Stack columns vertically on mobile */
     .row-widget.stHorizontal > div {
         width: 100% !important;
@@ -464,6 +513,16 @@ p, li, span, div {
     /* Adjust selectbox for mobile */
     .stSelectbox > div {
         width: 100% !important;
+    }
+    
+    /* Make metrics more compact on mobile */
+    .st-emotion-cache-1wivap2 {
+        font-size: 1.25rem !important;
+    }
+    
+    .st-emotion-cache-q8sbsg p {
+        font-size: 0.8rem !important;
+        margin-top: 0 !important;
     }
 }
 
@@ -575,16 +634,30 @@ input::placeholder {
 /* Responsive adjustments for login page */
 @media (max-width: 768px) {
     .login-container {
-        max-width: 90%;
-        padding: 1.5rem;
-        margin-top: 1rem;
+        max-width: 95%;
+        padding: 1.25rem;
+        margin-top: 0.5rem;
     }
     
     .login-title {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.25rem;
     }
     
     .login-subtitle {
-        font-size: 1rem;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+    
+    /* Ensure login form elements have proper spacing */
+    div[data-baseweb="input"] {
+        margin-bottom: 0.75rem;
+    }
+    
+    /* Add padding at the top to prevent cutoff */
+    .login-header {
+        margin-bottom: 1rem;
+        padding-top: 1rem;
     }
 }

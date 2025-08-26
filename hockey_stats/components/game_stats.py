@@ -59,18 +59,19 @@ def game_stats_view(players_df, games_df, events_df, game_roster_df):
     elif result == 'L':
         result_color = "inverse"  # Red color for losses
     
-    # Display game summary
-    col1, col2, col3 = st.columns(3)
+    # Display game summary with horizontal scrolling on mobile
+    st.markdown('<div class="scroll-indicator">Swipe horizontally to see more stats →</div>', unsafe_allow_html=True)
+    st.markdown('<div class="stats-scroll-container">', unsafe_allow_html=True)
     
-    with col1:
-        # Display result with appropriate styling
-        if result == 'W':
-            display_metric("Result", result, delta="Win", delta_color="normal")
-        elif result == 'L':
-            display_metric("Result", result, delta="Loss", delta_color="inverse")
-        else:
-            display_metric("Result", result)
-        display_metric("Score", f"{goals_for}-{goals_against}")
+    # Display result with appropriate styling
+    if result == 'W':
+        display_metric("Result", result, delta="Win", delta_color="normal")
+    elif result == 'L':
+        display_metric("Result", result, delta="Loss", delta_color="inverse")
+    else:
+        display_metric("Result", result)
+    
+    display_metric("Score", f"{goals_for}-{goals_against}")
     
     # Get game events
     game_events = events_df[events_df['GameID'] == selected_game_id]
@@ -84,17 +85,22 @@ def game_stats_view(players_df, games_df, events_df, game_roster_df):
     power_play_opportunities = len(game_events[game_events['EventType'] == 'PowerPlay']) if 'EventType' in game_events.columns else 0
     power_play_pct = (power_play_goals / power_play_opportunities * 100) if power_play_opportunities > 0 else 0
     
-    with col2:
-        display_metric("Shots", shots)
-        display_metric("Penalty Minutes", penalty_minutes)
+    display_metric("Shots", shots)
+    display_metric("Penalty Minutes", penalty_minutes)
+    display_metric("Power Play", f"{power_play_goals}/{power_play_opportunities}")
+    display_metric("Power Play %", f"{power_play_pct:.1f}%")
     
-    with col3:
-        display_metric("Power Play", f"{power_play_goals}/{power_play_opportunities}")
-        display_metric("Power Play %", f"{power_play_pct:.1f}%")
+    # Close the container
+    st.markdown('</div>', unsafe_allow_html=True)
     
-    # Player performance table
+    # Player performance table - Wrap in collapsible section for mobile
     st.markdown("---")
-    st.subheader("Player Performance")
+    st.markdown('<div class="collapsible-section">', unsafe_allow_html=True)
+    st.markdown('<div class="collapsible-header">', unsafe_allow_html=True)
+    st.markdown("### Player Performance")
+    st.markdown('<span class="collapsible-arrow">▼</span>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('<div class="collapsible-content">', unsafe_allow_html=True)
     
     # Create filter for position
     position_filter = st.radio(
@@ -256,9 +262,18 @@ def game_stats_view(players_df, games_df, events_df, game_roster_df):
     else:
         st.info("No player statistics available for this game.")
     
-    # Game Timeline
+    # Close the player performance collapsible section
+    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
+    
+    # Game Timeline - Wrap in collapsible section for mobile
     st.markdown("---")
-    st.subheader("Game Timeline")
+    st.markdown('<div class="collapsible-section">', unsafe_allow_html=True)
+    st.markdown('<div class="collapsible-header">', unsafe_allow_html=True)
+    st.markdown("### Game Timeline")
+    st.markdown('<span class="collapsible-arrow">▼</span>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('<div class="collapsible-content">', unsafe_allow_html=True)
     
     if not game_events.empty:
         # Create timeline events
@@ -371,7 +386,9 @@ def game_stats_view(players_df, games_df, events_df, game_roster_df):
                 hide_index=True,
                 use_container_width=True
             )
-        else:
-            st.info("No timeline events available for this game.")
     else:
         st.info("No timeline events available for this game.")
+    
+    # Close the game timeline collapsible section
+    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)

@@ -45,9 +45,6 @@ def game_stats_view(players_df, games_df, events_df, game_roster_df):
     selected_game_id = game_ids[selected_game_index]
     selected_game = games_df[games_df['GameID'] == selected_game_id].iloc[0]
     
-    # Display game details
-    st.markdown(f"### {selected_game.get('Date', '')} vs {selected_game.get('Opponent', '')}")
-    
     # Get game result and score
     result = selected_game.get('Result', '')
     goals_for = selected_game.get('GoalsFor', 0)
@@ -59,12 +56,8 @@ def game_stats_view(players_df, games_df, events_df, game_roster_df):
     elif result == 'L':
         result_color = "inverse"  # Red color for losses
     
-    # Display game details with direct HTML styling for heading
-    st.markdown(f"""
-        <h3 style="color: #00205B; background-color: #F0F2F5; padding: 8px; 
-        border-bottom: 2px solid #00A0E3; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); 
-        font-weight: 700; margin-bottom: 15px;">{selected_game.get('Date', '')} vs {selected_game.get('Opponent', '')}</h3>
-    """, unsafe_allow_html=True)
+    # Display game details using native Streamlit heading for better cross-platform compatibility
+    st.markdown(f"### {selected_game.get('Date', '')} vs {selected_game.get('Opponent', '')}")
     
     # Get game events
     game_events = events_df[events_df['GameID'] == selected_game_id]

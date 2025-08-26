@@ -22,12 +22,8 @@ def team_stats_view(players_df, games_df, events_df, game_roster_df):
     # Calculate team stats
     team_stats = calculate_team_stats(games_df)
     
-    # Display team season summary with direct HTML styling for heading
-    st.markdown("""
-        <h3 style="color: #00205B; background-color: #F0F2F5; padding: 8px; 
-        border-bottom: 2px solid #00A0E3; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); 
-        font-weight: 700; margin-bottom: 15px;">Season Summary</h3>
-    """, unsafe_allow_html=True)
+    # Display team season summary using native Streamlit heading for better cross-platform compatibility
+    st.markdown("### Season Summary")
     
     # Calculate win percentage
     win_pct = team_stats['wins'] / (team_stats['wins'] + team_stats['losses'] + team_stats['ties']) * 100 if (team_stats['wins'] + team_stats['losses'] + team_stats['ties']) > 0 else 0

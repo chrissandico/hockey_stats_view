@@ -146,12 +146,8 @@ def player_stats_view(players_df, games_df, events_df, game_roster_df):
                     else:
                         plus_minus -= 1
     
-    # Display game stats with direct HTML styling for heading
-    st.markdown(f"""
-        <h3 style="color: #00205B; background-color: #F0F2F5; padding: 8px; 
-        border-bottom: 2px solid #00A0E3; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); 
-        font-weight: 700; margin-bottom: 15px;">Game: {selected_game.get('Date', '')} vs {selected_game.get('Opponent', '')}</h3>
-    """, unsafe_allow_html=True)
+    # Display game stats using native Streamlit heading for better cross-platform compatibility
+    st.markdown(f"### Game: {selected_game.get('Date', '')} vs {selected_game.get('Opponent', '')}")
     
     # Create a DataFrame with the game stats
     game_stats_df = pd.DataFrame({
@@ -224,12 +220,8 @@ def player_stats_view(players_df, games_df, events_df, game_roster_df):
                     else:
                         season_plus_minus -= 1
     
-    # Display season stats with direct HTML styling for heading
-    st.markdown("""
-        <h3 style="color: #00205B; background-color: #F0F2F5; padding: 8px; 
-        border-bottom: 2px solid #00A0E3; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); 
-        font-weight: 700; margin-bottom: 15px;">Season Statistics</h3>
-    """, unsafe_allow_html=True)
+    # Display season stats using native Streamlit heading for better cross-platform compatibility
+    st.markdown("### Season Statistics")
     
     # Calculate goals per game
     gpg = season_goals / games_played if games_played > 0 else 0

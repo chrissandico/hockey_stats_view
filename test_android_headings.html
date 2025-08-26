@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Android Heading Test</title>
+    <style>
+        /* Base styles */
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #F0F2F5;
+            color: #333333;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        /* Heading styles - similar to the app's CSS */
+        h1, h2, h3, h4, h5, h6 {
+            color: #00205B !important;
+            background-color: #F0F2F5 !important;
+            padding: 8px !important;
+            margin-bottom: 15px !important;
+            border: 1px solid #00A0E3 !important;
+            border-radius: 4px !important;
+            font-weight: 700 !important; /* Bold but not ultra bold for better compatibility */
+            display: block !important; /* Ensure display property is set */
+            visibility: visible !important; /* Force visibility */
+            opacity: 1 !important; /* Ensure opacity is set to fully visible */
+        }
+        
+        /* Mobile-specific styles */
+        @media (max-width: 768px) {
+            /* Ensure headings are visible on Android Chrome */
+            h1, h2, h3, h4, h5, h6 {
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                color: #00205B !important;
+                background-color: #F0F2F5 !important;
+                padding: 8px !important;
+                margin-bottom: 15px !important;
+                border: 1px solid #00A0E3 !important;
+                border-radius: 4px !important;
+                font-weight: 700 !important;
+                /* Use simpler text styling for Android */
+                text-shadow: none !important;
+                -webkit-text-size-adjust: 100% !important; /* Prevent text size adjustment */
+            }
+        }
+        
+        .info-box {
+            background-color: #e8f4f8;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hockey Stats Heading Test</h1>
+        
+        <div class="info-box">
+            <p>This page tests heading visibility on Android Chrome.</p>
+        </div>
+        
+        <h2>Heading Level 2</h2>
+        <p>This is a paragraph following a level 2 heading. The heading should be visible on all devices including Android Chrome.</p>
+        
+        <h3>Heading Level 3</h3>
+        <p>This is a paragraph following a level 3 heading. The heading should be visible on all devices including Android Chrome.</p>
+        
+        <h4>Heading Level 4</h4>
+        <p>This is a paragraph following a level 4 heading. The heading should be visible on all devices including Android Chrome.</p>
+        
+        <h5>Heading Level 5</h5>
+        <p>This is a paragraph following a level 5 heading. The heading should be visible on all devices including Android Chrome.</p>
+        
+        <h6>Heading Level 6</h6>
+        <p>This is a paragraph following a level 6 heading. The heading should be visible on all devices including Android Chrome.</p>
+        
+        <div class="info-box">
+            <h3>Heading Inside a Container</h3>
+            <p>This heading is inside a container div. It should also be visible on Android Chrome.</p>
+        </div>
+        
+        <div class="info-box">
+            <p><strong>Testing Instructions:</strong></p>
+            <ol>
+                <li>Open this page on an Android device using Chrome</li>
+                <li>Verify that all headings (h1-h6) are visible</li>
+                <li>Check that headings have blue text on light gray background</li>
+                <li>Confirm headings have a blue border</li>
+                <li>Ensure heading text is bold and clearly readable</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>

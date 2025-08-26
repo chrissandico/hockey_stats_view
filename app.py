@@ -53,14 +53,17 @@ def check_password():
         st.session_state["password_attempt"] = False
 
     if not st.session_state["authenticated"]:
-        # Show login form with enhanced styling and direct HTML styling for better visibility
+        # Show login form with enhanced styling and direct HTML styling for Android compatibility
         logo_html = local_image("hockey_stats/static/images/markham_waxers_logo.png", width="100px")
         st.markdown(f"""
         <div class="login-container" style="background-color: #FFFFFF; border-radius: 15px; box-shadow: 0 8px 25px rgba(0, 32, 91, 0.15); padding: 2rem; text-align: center; margin: 0 auto; max-width: 450px; border-top: 5px solid #00205B;">
             <div class="login-header" style="margin-bottom: 1.5rem;">
                 <div class="login-logo" style="width: 100px; margin: 0 auto 1.5rem auto;">{logo_html}</div>
-                <h1 style="color: #00205B; font-size: 1.8rem; font-weight: bold; margin-bottom: 0.5rem; text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);">Hockey Stats Dashboard</h1>
-                <p style="color: #00A0E3; font-size: 1.1rem; margin-bottom: 1rem;">Team Members Access Portal</p>
+                <h1 style="color: #00205B !important; background-color: #F0F2F5 !important; padding: 8px !important; 
+                margin-bottom: 15px !important; border: 1px solid #00A0E3 !important; border-radius: 4px !important;
+                font-weight: 700 !important; display: block !important; visibility: visible !important; opacity: 1 !important; font-size: 1.8rem !important;">Hockey Stats Dashboard</h1>
+                <div class="android-heading-fallback">Hockey Stats Dashboard</div>
+                <p style="color: #00A0E3 !important; font-size: 1.1rem !important; margin-bottom: 1rem !important; font-weight: bold !important;">Team Members Access Portal</p>
             </div>
         </div>
         """, unsafe_allow_html=True)
@@ -100,11 +103,13 @@ if not check_password():
     st.stop()
 
 # Main application (only runs if authenticated)
+# Use both native Streamlit heading and a custom div for Android compatibility
 st.markdown("""
-    <h1 style="color: #00205B; background-color: #F0F2F5; padding: 10px; 
-    border-bottom: 3px solid #00A0E3; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); 
-    font-weight: 700; margin-bottom: 20px;">🏒 Hockey Statistics Dashboard</h1>
+    <h1 style="color: #00205B !important; background-color: #F0F2F5 !important; padding: 8px !important; 
+    margin-bottom: 15px !important; border: 1px solid #00A0E3 !important; border-radius: 4px !important;
+    font-weight: 700 !important; display: block !important; visibility: visible !important; opacity: 1 !important;">🏒 Hockey Statistics Dashboard</h1>
 """, unsafe_allow_html=True)
+st.markdown('<div class="android-heading-fallback">🏒 Hockey Statistics Dashboard</div>', unsafe_allow_html=True)
 
 # Navigation options
 nav_options = ["My Player's Stats", "Team Stats & Leaderboards", "Game Stats"]

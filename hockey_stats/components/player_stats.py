@@ -12,7 +12,9 @@ def player_stats_view(players_df, games_df, events_df, game_roster_df):
         events_df: DataFrame containing game events
         game_roster_df: DataFrame containing game roster information
     """
+    # Use both native Streamlit heading and a custom div for Android compatibility
     st.subheader("My Player's Stats")
+    st.markdown('<div class="android-heading-fallback">My Player\'s Stats</div>', unsafe_allow_html=True)
     
     # Check if data is available
     if players_df.empty:
@@ -53,12 +55,16 @@ def player_stats_view(players_df, games_df, events_df, game_roster_df):
         jersey = selected_player.get('JerseyNumber', '')
         first_name = selected_player.get('FirstName', f"Player")
         last_name = selected_player.get('LastName', f"#{jersey}")
+        # Use both native Streamlit heading and a custom div for Android compatibility
         st.markdown(f"### #{jersey} {first_name} {last_name}")
+        st.markdown(f'<div class="android-heading-fallback">#{jersey} {first_name} {last_name}</div>', unsafe_allow_html=True)
         st.markdown(f"**Position:** {selected_player.get('Position', '')}")
     
     # Game selection section
     st.markdown("---")
+    # Use both native Streamlit heading and a custom div for Android compatibility
     st.subheader("Game Statistics")
+    st.markdown('<div class="android-heading-fallback">Game Statistics</div>', unsafe_allow_html=True)
     
     # Filter games where this player was present using game roster
     if not game_roster_df.empty:
@@ -146,8 +152,9 @@ def player_stats_view(players_df, games_df, events_df, game_roster_df):
                     else:
                         plus_minus -= 1
     
-    # Display game stats using native Streamlit heading for better cross-platform compatibility
+    # Use both native Streamlit heading and a custom div for Android compatibility
     st.markdown(f"### Game: {selected_game.get('Date', '')} vs {selected_game.get('Opponent', '')}")
+    st.markdown(f'<div class="android-heading-fallback">Game: {selected_game.get("Date", "")} vs {selected_game.get("Opponent", "")}</div>', unsafe_allow_html=True)
     
     # Create a DataFrame with the game stats
     game_stats_df = pd.DataFrame({
@@ -175,7 +182,9 @@ def player_stats_view(players_df, games_df, events_df, game_roster_df):
     
     # Season stats section
     st.markdown("---")
+    # Use both native Streamlit heading and a custom div for Android compatibility
     st.subheader("Season Statistics")
+    st.markdown('<div class="android-heading-fallback">Season Statistics</div>', unsafe_allow_html=True)
     
     # Calculate games played
     games_played = len(player_game_ids)
@@ -220,8 +229,9 @@ def player_stats_view(players_df, games_df, events_df, game_roster_df):
                     else:
                         season_plus_minus -= 1
     
-    # Display season stats using native Streamlit heading for better cross-platform compatibility
+    # Use both native Streamlit heading and a custom div for Android compatibility
     st.markdown("### Season Statistics")
+    st.markdown('<div class="android-heading-fallback">Season Statistics</div>', unsafe_allow_html=True)
     
     # Calculate goals per game
     gpg = season_goals / games_played if games_played > 0 else 0
@@ -254,7 +264,9 @@ def player_stats_view(players_df, games_df, events_df, game_roster_df):
     
     # Game log
     st.markdown("---")
+    # Use both native Streamlit heading and a custom div for Android compatibility
     st.subheader("Game Log")
+    st.markdown('<div class="android-heading-fallback">Game Log</div>', unsafe_allow_html=True)
     
     # Create game log dataframe
     game_log = []

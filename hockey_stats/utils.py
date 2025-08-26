@@ -11,8 +11,14 @@ def load_css():
         
 def load_js():
     """Load custom JavaScript for mobile optimizations"""
-    js_file = Path(__file__).parent / "static/js/mobile_helpers.js"
-    with open(js_file) as f:
+    # Load mobile helpers
+    mobile_helpers_file = Path(__file__).parent / "static/js/mobile_helpers.js"
+    with open(mobile_helpers_file) as f:
+        st.markdown(f'<script>{f.read()}</script>', unsafe_allow_html=True)
+    
+    # Load Android heading fix
+    android_fix_file = Path(__file__).parent / "static/js/android_heading_fix.js"
+    with open(android_fix_file) as f:
         st.markdown(f'<script>{f.read()}</script>', unsafe_allow_html=True)
 
 def local_image(image_path, width=None):

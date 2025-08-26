@@ -21,7 +21,12 @@
 }
 
 /* Improve text visibility - Android compatible */
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6,
+.st-emotion-cache-10trblm,
+.st-emotion-cache-q8sbsg p,
+.st-emotion-cache-16idsys p,
+.st-emotion-cache-183lzff,
+.custom-heading {
     color: var(--primary-blue) !important;
     background-color: var(--light-gray) !important;
     padding: 8px !important;
@@ -33,6 +38,13 @@ h1, h2, h3, h4, h5, h6 {
     display: block !important; /* Ensure display property is set */
     visibility: visible !important; /* Force visibility */
     opacity: 1 !important; /* Ensure opacity is set to fully visible */
+    -webkit-transform: translateZ(0) !important; /* Force hardware acceleration */
+    transform: translateZ(0) !important;
+    -webkit-backface-visibility: hidden !important; /* Fix rendering issues */
+    backface-visibility: hidden !important;
+    -webkit-font-smoothing: antialiased !important; /* Improve text rendering */
+    -moz-osx-font-smoothing: grayscale !important;
+    text-rendering: optimizeLegibility !important;
 }
 
 p, li, span, div {
@@ -436,7 +448,12 @@ p, li, span, div {
     /* Ensure headings are visible on Android Chrome */
     h1, h2, h3, h4, h5, h6,
     .stMarkdown h1, .stMarkdown h2, .stMarkdown h3, 
-    .stMarkdown h4, .stMarkdown h5, .stMarkdown h6 {
+    .stMarkdown h4, .stMarkdown h5, .stMarkdown h6,
+    .st-emotion-cache-10trblm,
+    .st-emotion-cache-q8sbsg p,
+    .st-emotion-cache-16idsys p,
+    .st-emotion-cache-183lzff,
+    .custom-heading {
         display: block !important;
         visibility: visible !important;
         opacity: 1 !important;
@@ -450,6 +467,30 @@ p, li, span, div {
         /* Use simpler text styling for Android */
         text-shadow: none !important;
         -webkit-text-size-adjust: 100% !important; /* Prevent text size adjustment */
+        -webkit-transform: translateZ(0) !important; /* Force hardware acceleration */
+        transform: translateZ(0) !important;
+        -webkit-backface-visibility: hidden !important; /* Fix rendering issues */
+        backface-visibility: hidden !important;
+        -webkit-font-smoothing: antialiased !important; /* Improve text rendering */
+        -moz-osx-font-smoothing: grayscale !important;
+        text-rendering: optimizeLegibility !important;
+        z-index: 1 !important; /* Ensure proper stacking */
+        position: relative !important; /* Enable proper z-index */
+    }
+    
+    /* Fallback for Android Chrome - custom heading class */
+    .android-heading-fallback {
+        font-size: 1.17em !important;
+        font-weight: bold !important;
+        display: block !important;
+        margin-top: 1em !important;
+        margin-bottom: 1em !important;
+        color: var(--primary-blue) !important;
+        background-color: var(--light-gray) !important;
+        padding: 8px !important;
+        border: 1px solid var(--secondary-blue) !important;
+        border-radius: 4px !important;
+        text-align: left !important;
     }
     
     /* Streamlit app container adjustments */

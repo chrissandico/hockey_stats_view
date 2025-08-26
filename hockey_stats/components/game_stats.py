@@ -12,7 +12,9 @@ def game_stats_view(players_df, games_df, events_df, game_roster_df):
         events_df: DataFrame containing game events
         game_roster_df: DataFrame containing game roster information
     """
+    # Use both native Streamlit heading and a custom div for Android compatibility
     st.subheader("Game Stats")
+    st.markdown('<div class="android-heading-fallback">Game Stats</div>', unsafe_allow_html=True)
     
     # Check if data is available
     if games_df.empty:
@@ -56,8 +58,9 @@ def game_stats_view(players_df, games_df, events_df, game_roster_df):
     elif result == 'L':
         result_color = "inverse"  # Red color for losses
     
-    # Display game details using native Streamlit heading for better cross-platform compatibility
+    # Use both native Streamlit heading and a custom div for Android compatibility
     st.markdown(f"### {selected_game.get('Date', '')} vs {selected_game.get('Opponent', '')}")
+    st.markdown(f'<div class="android-heading-fallback">{selected_game.get("Date", "")} vs {selected_game.get("Opponent", "")}</div>', unsafe_allow_html=True)
     
     # Get game events
     game_events = events_df[events_df['GameID'] == selected_game_id]
@@ -100,6 +103,7 @@ def game_stats_view(players_df, games_df, events_df, game_roster_df):
     st.markdown('<div class="collapsible-section">', unsafe_allow_html=True)
     st.markdown('<div class="collapsible-header">', unsafe_allow_html=True)
     st.markdown("### Player Performance")
+    st.markdown('<div class="android-heading-fallback">Player Performance</div>', unsafe_allow_html=True)
     st.markdown('<span class="collapsible-arrow">▼</span>', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
     st.markdown('<div class="collapsible-content">', unsafe_allow_html=True)
@@ -273,6 +277,7 @@ def game_stats_view(players_df, games_df, events_df, game_roster_df):
     st.markdown('<div class="collapsible-section">', unsafe_allow_html=True)
     st.markdown('<div class="collapsible-header">', unsafe_allow_html=True)
     st.markdown("### Game Timeline")
+    st.markdown('<div class="android-heading-fallback">Game Timeline</div>', unsafe_allow_html=True)
     st.markdown('<span class="collapsible-arrow">▼</span>', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
     st.markdown('<div class="collapsible-content">', unsafe_allow_html=True)

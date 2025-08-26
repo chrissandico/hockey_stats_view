@@ -12,7 +12,9 @@ def team_stats_view(players_df, games_df, events_df, game_roster_df):
         events_df: DataFrame containing game events
         game_roster_df: DataFrame containing game roster information
     """
+    # Use both native Streamlit heading and a custom div for Android compatibility
     st.subheader("Team Stats & Leaderboards")
+    st.markdown('<div class="android-heading-fallback">Team Stats & Leaderboards</div>', unsafe_allow_html=True)
     
     # Check if data is available
     if games_df.empty or players_df.empty:
@@ -22,8 +24,9 @@ def team_stats_view(players_df, games_df, events_df, game_roster_df):
     # Calculate team stats
     team_stats = calculate_team_stats(games_df)
     
-    # Display team season summary using native Streamlit heading for better cross-platform compatibility
+    # Display team season summary using both native Streamlit heading and a custom div for Android compatibility
     st.markdown("### Season Summary")
+    st.markdown('<div class="android-heading-fallback">Season Summary</div>', unsafe_allow_html=True)
     
     # Calculate win percentage
     win_pct = team_stats['wins'] / (team_stats['wins'] + team_stats['losses'] + team_stats['ties']) * 100 if (team_stats['wins'] + team_stats['losses'] + team_stats['ties']) > 0 else 0
@@ -119,12 +122,15 @@ def team_stats_view(players_df, games_df, events_df, game_roster_df):
     
     # Display leaderboards
     st.markdown("---")
+    # Use both native Streamlit heading and a custom div for Android compatibility
     st.markdown("## Leaderboards")
+    st.markdown('<div class="android-heading-fallback">Leaderboards</div>', unsafe_allow_html=True)
     
     # Forward Leaderboards - Wrap in collapsible section for mobile
     st.markdown('<div class="collapsible-section">', unsafe_allow_html=True)
     st.markdown('<div class="collapsible-header">', unsafe_allow_html=True)
     st.markdown("### Forward Leaderboards")
+    st.markdown('<div class="android-heading-fallback">Forward Leaderboards</div>', unsafe_allow_html=True)
     st.markdown('<span class="collapsible-arrow">▼</span>', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
     st.markdown('<div class="collapsible-content">', unsafe_allow_html=True)
@@ -202,6 +208,7 @@ def team_stats_view(players_df, games_df, events_df, game_roster_df):
     st.markdown('<div class="collapsible-section">', unsafe_allow_html=True)
     st.markdown('<div class="collapsible-header">', unsafe_allow_html=True)
     st.markdown("### Defensemen Leaderboards")
+    st.markdown('<div class="android-heading-fallback">Defensemen Leaderboards</div>', unsafe_allow_html=True)
     st.markdown('<span class="collapsible-arrow">▼</span>', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
     st.markdown('<div class="collapsible-content">', unsafe_allow_html=True)
@@ -300,6 +307,7 @@ def team_stats_view(players_df, games_df, events_df, game_roster_df):
     st.markdown('<div class="collapsible-section">', unsafe_allow_html=True)
     st.markdown('<div class="collapsible-header">', unsafe_allow_html=True)
     st.markdown("### Goalie Statistics")
+    st.markdown('<div class="android-heading-fallback">Goalie Statistics</div>', unsafe_allow_html=True)
     st.markdown('<span class="collapsible-arrow">▼</span>', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
     st.markdown('<div class="collapsible-content">', unsafe_allow_html=True)
@@ -394,6 +402,7 @@ def team_stats_view(players_df, games_df, events_df, game_roster_df):
     st.markdown('<div class="collapsible-section">', unsafe_allow_html=True)
     st.markdown('<div class="collapsible-header">', unsafe_allow_html=True)
     st.markdown("## Team Game Log")
+    st.markdown('<div class="android-heading-fallback">Team Game Log</div>', unsafe_allow_html=True)
     st.markdown('<span class="collapsible-arrow">▼</span>', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
     st.markdown('<div class="collapsible-content">', unsafe_allow_html=True)

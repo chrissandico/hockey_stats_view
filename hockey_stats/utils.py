@@ -6,19 +6,19 @@ from pathlib import Path
 def load_css():
     """Load custom CSS"""
     css_file = Path(__file__).parent / "static/css/style.css"
-    with open(css_file) as f:
+    with open(css_file, 'r', encoding='utf-8') as f:
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
         
 def load_js():
     """Load custom JavaScript for mobile optimizations"""
     # Load mobile helpers
     mobile_helpers_file = Path(__file__).parent / "static/js/mobile_helpers.js"
-    with open(mobile_helpers_file) as f:
+    with open(mobile_helpers_file, 'r', encoding='utf-8') as f:
         st.markdown(f'<script>{f.read()}</script>', unsafe_allow_html=True)
     
     # Load Android heading fix
     android_fix_file = Path(__file__).parent / "static/js/android_heading_fix.js"
-    with open(android_fix_file) as f:
+    with open(android_fix_file, 'r', encoding='utf-8') as f:
         st.markdown(f'<script>{f.read()}</script>', unsafe_allow_html=True)
 
 def local_image(image_path, width=None):
